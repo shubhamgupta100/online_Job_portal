@@ -8,12 +8,15 @@ const path = require("path");
 
 // MongoDB
 mongoose
-  .connect("mongodb://localhost:27017/jobPortal", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
+  .connect(
+    "mongodb+srv://shubhamgupta:9nsyRSb8IroSf2ud@cluster0.6rwkw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    }
+  )
   .then((res) => console.log("Connected to DB"))
   .catch((err) => console.log(err));
 
