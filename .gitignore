@@ -1,0 +1,6 @@
+
+
+backend/public/profile/*
+backend/public/resume/*
+node_modules/
+frontend/node_modules/
