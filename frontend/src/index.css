@@ -95,8 +95,8 @@ body {
 .job_card .card,
 .filter_job .card {
   padding: 15px;
-  margin: 15px 10px;
-  border-radius: 10px;
+  margin: 20px 10px;
+  border-radius: 20px;
   border: 1px solid rgb(224, 222, 222);
 }
 .filter_job .card {
