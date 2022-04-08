@@ -72,14 +72,13 @@ const Navbar = () => {
                     <span class="sr-only">(current)</span>
                   </Link>
                 </li>
-
                 <li class="nav-item">
                   <Link
                     class="nav-link"
                     style={{ color: "black" }}
                     to="/logout"
                   >
-                    <Button color="primary">Logout</Button>
+                    <button>Logout</button>
                   </Link>
                 </li>
               </ul>

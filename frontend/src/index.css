@@ -16,6 +16,8 @@ body {
   margin: 0;
   padding: 0;
   display: inline-block;
+  /* line-height: 18px;
+  font-size: 18px; */
 }
 .other ul li h5 {
   font-weight: 600;
@@ -98,4 +100,41 @@ body {
 }
 .sorry_line h2 {
   font-weight: bolder;
+}
+
+/* Login */
+.Login_container .card {
+  position: relative;
+  top: -50px;
+  padding: 50px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 1px solid rgb(224, 222, 222);
+}
+.Login_container .btn {
+  font-weight: bolder;
+  padding: 15px 130px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: #0d6efd;
+}
+
+/* Signup */
+.signUp_container .card {
+  padding: 50px 200px;
+  margin-bottom: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 1px solid rgb(224, 222, 222);
+}
+.signUp_container .btn {
+  font-weight: bolder;
+  padding: 15px 130px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: #0d6efd;
 }
