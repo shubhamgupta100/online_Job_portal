@@ -101,44 +101,59 @@ const JobTile = (props) => {
   const deadline = new Date(job.deadline).toLocaleDateString();
 
   return (
-    <Paper className={classes.jobTileOuter} elevation={3}>
-      <Grid container>
-        <Grid container item xs={9} spacing={1} direction="column">
-          <Grid item>
-            <Typography variant="h5">{job.title}</Typography>
-          </Grid>
-          <Grid item>
-            <Rating value={job.rating !== -1 ? job.rating : null} readOnly />
-          </Grid>
-          <Grid item>Role : {job.jobType}</Grid>
-          <Grid item>Salary : &#8377; {job.salary} per month</Grid>
-          <Grid item>
-            Duration :{" "}
-            {job.duration !== 0 ? `${job.duration} month` : `Flexible`}
-          </Grid>
-          <Grid item>Posted By : {job.recruiter.name}</Grid>
-          <Grid item>Application Deadline : {deadline}</Grid>
+    <Paper className={classes.jobTileOuter} elevation={1}>
+      <div>
+        <div>
+          <div className="job_title">
+            <div>
+              <h4>{job.title}</h4>
+            </div>
+            <div item>
+              <Rating value={job.rating !== -1 ? job.rating : null} readOnly />
+            </div>
+          </div>
 
-          <Grid item>
-            {job.skillsets.map((skill) => (
-              <Chip label={skill} style={{ marginRight: "2px" }} />
-            ))}
-          </Grid>
-        </Grid>
-        <Grid item xs={3}>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            onClick={() => {
-              setOpen(true);
-            }}
-            disabled={userType() === "recruiter"}
-          >
-            Apply
-          </Button>
-        </Grid>
-      </Grid>
+          <div className="job_type">
+            <div> Role : {job.jobType}</div>
+            <div>Salary : &#8377; {job.salary} per month</div>
+            <div>
+              Duration :{" "}
+              {job.duration !== 0 ? `${job.duration} month` : `Flexible`}
+            </div>
+          </div>
+
+          <div className="posted_by">
+            <div>Posted By : {job.recruiter.name}</div>
+            <div>LinkedIn :Click Here</div>
+            <div>Application Deadline : {deadline}</div>
+          </div>
+
+          <div className="apply_job">
+            <div>
+              {job.skillsets.map((skill) => (
+                <Chip
+                  label={skill}
+                  style={{
+                    margin: "4px",
+                    fontSize: "16px",
+                  }}
+                />
+              ))}
+            </div>
+
+            <div className="apply">
+              <button
+                onClick={() => {
+                  setOpen(true);
+                }}
+                disabled={userType() === "recruiter"}
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
         <Paper
           style={{
@@ -186,7 +201,7 @@ const FilterPopup = (props) => {
   const classes = useStyles();
   const { open, handleClose, searchOptions, setSearchOptions, getData } = props;
   return (
-    <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
+    <div className="filter_job">
       <Paper
         style={{
           padding: "50px",
@@ -329,14 +344,14 @@ const FilterPopup = (props) => {
               <Grid
                 item
                 container
-                xs={4}
+                xs={3}
                 justify="space-around"
                 alignItems="center"
                 style={{ border: "1px solid #D1D1D1", borderRadius: "5px" }}
               >
                 <Grid item>
                   <Checkbox
-                    name="salary"
+                    name="Salary"
                     checked={searchOptions.sort.salary.status}
                     onChange={(event) =>
                       setSearchOptions({
@@ -441,7 +456,7 @@ const FilterPopup = (props) => {
               <Grid
                 item
                 container
-                xs={4}
+                xs={3}
                 justify="space-around"
                 alignItems="center"
                 style={{ border: "1px solid #D1D1D1", borderRadius: "5px" }}
@@ -498,18 +513,11 @@ const FilterPopup = (props) => {
           </Grid>
 
           <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ padding: "10px 50px" }}
-              onClick={() => getData()}
-            >
-              Apply
-            </Button>
+            <button onClick={() => getData()}>Apply</button>
           </Grid>
         </Grid>
       </Paper>
-    </Modal>
+    </div>
   );
 };
 
@@ -625,90 +633,64 @@ const Home = (props) => {
 
   return (
     <>
-      <Grid
-        container
-        item
-        direction="column"
-        alignItems="center"
-        style={{ padding: "30px", minHeight: "93vh" }}
-      >
-        <Grid
-          item
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-        >
-          <Grid item xs>
-            <Typography variant="h2">Jobs</Typography>
-          </Grid>
-          <Grid item xs>
-            <TextField
-              label="Search Jobs"
-              value={searchOptions.query}
-              onChange={(event) =>
-                setSearchOptions({
-                  ...searchOptions,
-                  query: event.target.value,
-                })
-              }
-              onKeyPress={(ev) => {
-                if (ev.key === "Enter") {
-                  getData();
-                }
-              }}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment>
-                    <IconButton onClick={() => getData()}>
-                      <SearchIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              style={{ width: "500px" }}
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item>
-            <IconButton onClick={() => setFilterOpen(true)}>
-              <FilterListIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
-
-        <Grid
-          container
-          item
-          xs
-          direction="column"
-          alignItems="stretch"
-          justify="center"
-        >
+      <div className="main_conatiner">
+        <div className="home-container">
           {jobs.length > 0 ? (
-            jobs.map((job) => {
-              return <JobTile job={job} />;
-            })
+            <div className="searchJob">
+              <TextField
+                label="Search Jobs"
+                value={searchOptions.query}
+                onChange={(event) =>
+                  setSearchOptions({
+                    ...searchOptions,
+                    query: event.target.value,
+                  })
+                }
+                onKeyPress={(ev) => {
+                  if (ev.key === "Enter") {
+                    getData();
+                  }
+                }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment>
+                      <IconButton onClick={() => getData()}>
+                        <SearchIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                style={{ width: "500px" }}
+                variant="outlined"
+              />
+            </div>
           ) : (
-            <Typography variant="h5" style={{ textAlign: "center" }}>
-              No jobs found
-            </Typography>
+            ""
           )}
-        </Grid>
-        {/* <Grid item>
-          <Pagination count={10} color="primary" />
-        </Grid> */}
-      </Grid>
-      <FilterPopup
-        open={filterOpen}
-        searchOptions={searchOptions}
-        setSearchOptions={setSearchOptions}
-        handleClose={() => setFilterOpen(false)}
-        getData={() => {
-          getData();
-          setFilterOpen(false);
-        }}
-      />
+          <div className="job-container">
+            {jobs.length > 0 ? (
+              jobs.map((job) => {
+                return <JobTile job={job} />;
+              })
+            ) : (
+              <div className="sorry_line">
+                <h2>Sorry We don't have matching jobs :) </h2>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <FilterPopup
+          open={filterOpen}
+          searchOptions={searchOptions}
+          setSearchOptions={setSearchOptions}
+          handleClose={() => setFilterOpen(false)}
+          getData={() => {
+            getData();
+            setFilterOpen(false);
+          }}
+        />
+      </div>
     </>
   );
 };

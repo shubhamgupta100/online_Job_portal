@@ -1,94 +1,154 @@
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  makeStyles,
-} from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 import isAuth, { userType } from "../lib/isAuth";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
-
-const Navbar = (props) => {
-  const classes = useStyles();
-  let history = useHistory();
-
-  const handleClick = (location) => {
-    console.log(location);
-    history.push(location);
-  };
-
+const Navbar = () => {
   return (
-    <AppBar position="fixed">
-      <Toolbar>
-        <Typography variant="h6" className={classes.title}>
-          Job Portal
-        </Typography>
+    <nav
+      class="navbar navbar-expand-lg navbar-light  shadow-sm"
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        paddingLeft: 50,
+        paddingRight: 50,
+      }}
+    >
+      <div class="logo mt-1">
+        <Link class="navbar-brand " to="/">
+          <h3 style={{ fontWeight: "bolder" }}>Online Job Portal</h3>
+        </Link>
+      </div>
+      <div class="other mt-1">
         {isAuth() ? (
           userType() === "recruiter" ? (
             <>
-              <Button color="inherit" onClick={() => handleClick("/home")}>
-                Home
-              </Button>
-              <Button color="inherit" onClick={() => handleClick("/addjob")}>
-                Add Jobs
-              </Button>
-              <Button color="inherit" onClick={() => handleClick("/myjobs")}>
-                My Jobs
-              </Button>
-              <Button color="inherit" onClick={() => handleClick("/employees")}>
-                Employees
-              </Button>
-              <Button color="inherit" onClick={() => handleClick("/profile")}>
-                Profile
-              </Button>
-              <Button color="inherit" onClick={() => handleClick("/logout")}>
-                Logout
-              </Button>
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <Link class="nav-link" style={{ color: "black" }} to="/home">
+                    <h5>Home</h5>
+                    <span class="sr-only">(current)</span>
+                  </Link>
+                </li>
+                <li class="nav-item">
+                  <Link
+                    class="nav-link"
+                    style={{ color: "black" }}
+                    to="/addjob"
+                  >
+                    <h5>Add Jobs</h5>
+                    <span class="sr-only">(current)</span>
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link
+                    class="nav-link"
+                    style={{ color: "black" }}
+                    to="/myjobs"
+                  >
+                    <h5>My Jobs</h5>
+                    <span class="sr-only">(current)</span>
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link
+                    class="nav-link"
+                    style={{ color: "black" }}
+                    to="/employees"
+                  >
+                    <h5>Employees</h5>
+                    <span class="sr-only">(current)</span>
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link
+                    class="nav-link"
+                    style={{ color: "black" }}
+                    to="/profile"
+                  >
+                    <h5>Profile</h5>
+                    <span class="sr-only">(current)</span>
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link
+                    class="nav-link"
+                    style={{ color: "black" }}
+                    to="/logout"
+                  >
+                    <Button color="primary">Logout</Button>
+                  </Link>
+                </li>
+              </ul>
             </>
           ) : (
             <>
-              <Button color="inherit" onClick={() => handleClick("/home")}>
-                Home
-              </Button>
-              <Button
-                color="inherit"
-                onClick={() => handleClick("/applications")}
-              >
-                Applications
-              </Button>
-              <Button color="inherit" onClick={() => handleClick("/profile")}>
-                Profile
-              </Button>
-              <Button color="inherit" onClick={() => handleClick("/logout")}>
-                Logout
-              </Button>
+              <ul>
+                <li class="nav-item">
+                  <Link class="nav-link" style={{ color: "black" }} to="/home">
+                    <h5>Home</h5>
+                    <span class="sr-only">(current)</span>
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link
+                    class="nav-link"
+                    style={{ color: "black" }}
+                    to="/applications"
+                  >
+                    <h5>Applications</h5>
+                    <span class="sr-only">(current)</span>
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link
+                    class="nav-link"
+                    style={{ color: "black" }}
+                    to="/profile"
+                  >
+                    <h5>Profile</h5>
+                    <span class="sr-only">(current)</span>
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link
+                    class="nav-link"
+                    style={{ color: "black" }}
+                    to="/logout"
+                  >
+                    <button>Logout</button>
+                  </Link>
+                </li>
+              </ul>
             </>
           )
         ) : (
           <>
-            <Button color="inherit" onClick={() => handleClick("/login")}>
-              Login
-            </Button>
-            <Button color="inherit" onClick={() => handleClick("/signup")}>
-              Signup
-            </Button>
+            <ul>
+              <li class="nav-item">
+                <Link class="nav-link" style={{ color: "black" }} to="/login">
+                  <h5>Login</h5>
+                  <span class="sr-only">(current)</span>
+                </Link>
+              </li>
+
+              <li class="nav-item">
+                <Link class="nav-link" style={{ color: "black" }} to="/signup">
+                  <h5>SignUp</h5>
+                  <span class="sr-only">(current)</span>
+                </Link>
+              </li>
+            </ul>
           </>
         )}
-      </Toolbar>
-    </AppBar>
+      </div>
+    </nav>
   );
 };
 

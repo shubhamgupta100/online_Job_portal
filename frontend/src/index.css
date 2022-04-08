@@ -1,13 +1,101 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Ovo" !important;
+}
+/* Navbar */
+.nav-container {
+  background: white;
+  margin-bottom: 0;
+}
+.other ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.other ul li {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+.other ul li h5 {
+  font-weight: 600;
+}
+.other ul li button,
+.apply button,
+.filter_job button {
+  color: white;
+  font-weight: bolder;
+  padding: 10px 30px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  background-color: #0d6efd;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Home */
+
+.main_conatiner {
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.home-container {
+  width: 80%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
+}
+.home-container .job-container {
+  width: 70%;
+  position: relative;
+  /* top: -200px; */
+}
+.job_title {
+  display: flex;
+  justify-content: space-between;
+}
+.job_title h4 {
+  font-weight: bold;
+}
+.job_type {
+  display: flex;
+  justify-content: space-between;
+}
+.job_type div {
+  font-size: 16px;
+  font-weight: bold;
+}
+.posted_by {
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.posted_by div {
+  font-size: 16px;
+  font-weight: bold;
+}
+.apply_job {
+  display: flex;
+  justify-content: space-between;
+}
+.filter_job {
+  position: fixed;
+  left: 60%;
+  top: 22%;
+}
+
+.searchJob {
+  position: relative;
+  /* top: -210px; */
+}
+
+.sorry_line {
+  display: flex;
+  justify-content: flex-start;
+}
+.sorry_line h2 {
+  font-weight: bolder;
 }

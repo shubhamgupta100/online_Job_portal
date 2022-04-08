@@ -5,7 +5,9 @@ const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
 const db = require("./config/mongoose");
+const app = express();
 if (process.env.NODE_ENV !== "PRODUCTION") {
+  console.log("shubh");
   require("dotenv").config({ path: "backend/config/config.env" });
 }
 const port = process.env.PORT || 4444;
@@ -20,7 +22,6 @@ if (!fs.existsSync("./public/profile")) {
   fs.mkdirSync("./public/profile");
 }
 
-const app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
@@ -39,6 +40,8 @@ app.use(express.static(path.join(__dirname, "../frontend/build")));
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
 });
+
 app.listen(port, () => {
-  console.log(`Server started on port ${port}!`);
+  console.log("shubham");
+  console.log(`Server started on port ${port}`);
 });

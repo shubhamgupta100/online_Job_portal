@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    process.env.MONGODB_URI,
+    "mongodb+srv://shubhamgupta:9nsyRSb8IroSf2ud@cluster0.6rwkw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     { useNewUrlParser: true },
     { useUnifiedTopology: true },
     { useCreateIndex: true }
