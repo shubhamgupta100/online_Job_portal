@@ -101,99 +101,108 @@ const JobTile = (props) => {
   const deadline = new Date(job.deadline).toLocaleDateString();
 
   return (
-    <Paper className={classes.jobTileOuter} elevation={1}>
-      <div>
+    <div className="job_card">
+      <Paper className="card" elevation={1}>
         <div>
-          <div className="job_title">
-            <div>
-              <h4>{job.title}</h4>
-            </div>
-            <div item>
-              <Rating value={job.rating !== -1 ? job.rating : null} readOnly />
-            </div>
-          </div>
-
-          <div className="job_type">
-            <div> Role : {job.jobType}</div>
-            <div>Salary : &#8377; {job.salary} per month</div>
-            <div>
-              Duration :{" "}
-              {job.duration !== 0 ? `${job.duration} month` : `Flexible`}
-            </div>
-          </div>
-
-          <div className="posted_by">
-            <div>Posted By : {job.recruiter.name}</div>
-            <div>LinkedIn :Click Here</div>
-            <div>Application Deadline : {deadline}</div>
-          </div>
-
-          <div className="apply_job">
-            <div>
-              {job.skillsets.map((skill) => (
-                <Chip
-                  label={skill}
-                  style={{
-                    margin: "4px",
-                    fontSize: "16px",
-                  }}
+          <div>
+            <div className="job_title">
+              <div>
+                <h4>{job.title}</h4>
+              </div>
+              <div item>
+                <Rating
+                  value={job.rating !== -1 ? job.rating : null}
+                  readOnly
                 />
-              ))}
+              </div>
             </div>
 
-            <div className="apply">
-              <button
-                onClick={() => {
-                  setOpen(true);
-                }}
-                disabled={userType() === "recruiter"}
-              >
-                Apply
-              </button>
+            <div className="job_type">
+              <div> Role : {job.jobType}</div>
+              <div>Salary : &#8377; {job.salary} per month</div>
+              <div>
+                Duration :{" "}
+                {job.duration !== 0 ? `${job.duration} month` : `Flexible`}
+              </div>
+            </div>
+
+            <div className="posted_by">
+              <div>Posted By : {job.recruiter.name}</div>
+              <div>LinkedIn :Click Here</div>
+              <div>Application Deadline : {deadline}</div>
+            </div>
+
+            <div className="apply_job">
+              <div>
+                {job.skillsets.map((skill) => (
+                  <Chip
+                    label={skill}
+                    style={{
+                      margin: "4px",
+                      fontSize: "16px",
+                    }}
+                  />
+                ))}
+              </div>
+
+              <div className="apply">
+                <button
+                  onClick={() => {
+                    setOpen(true);
+                  }}
+                  disabled={userType() === "recruiter"}
+                >
+                  Apply
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
-        <Paper
-          style={{
-            padding: "20px",
-            outline: "none",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            minWidth: "50%",
-            alignItems: "center",
-          }}
+        <Modal
+          open={open}
+          onClose={handleClose}
+          className={classes.popupDialog}
         >
-          <TextField
-            label="Write SOP (upto 250 words)"
-            multiline
-            rows={8}
-            style={{ width: "100%", marginBottom: "30px" }}
-            variant="outlined"
-            value={sop}
-            onChange={(event) => {
-              if (
-                event.target.value.split(" ").filter(function (n) {
-                  return n != "";
-                }).length <= 250
-              ) {
-                setSop(event.target.value);
-              }
+          <Paper
+            style={{
+              padding: "20px",
+              outline: "none",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              minWidth: "50%",
+              alignItems: "center",
             }}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ padding: "10px 50px" }}
-            onClick={() => handleApply()}
           >
-            Submit
-          </Button>
-        </Paper>
-      </Modal>
-    </Paper>
+            <TextField
+              label="Write SOP (upto 250 words)"
+              multiline
+              rows={8}
+              style={{ width: "100%", marginBottom: "30px" }}
+              variant="outlined"
+              value={sop}
+              onChange={(event) => {
+                if (
+                  event.target.value.split(" ").filter(function (n) {
+                    return n != "";
+                  }).length <= 250
+                ) {
+                  setSop(event.target.value);
+                }
+              }}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ padding: "10px 50px" }}
+              onClick={() => handleApply()}
+            >
+              Submit
+            </Button>
+          </Paper>
+        </Modal>
+      </Paper>
+    </div>
   );
 };
 
@@ -203,11 +212,12 @@ const FilterPopup = (props) => {
   return (
     <div className="filter_job">
       <Paper
-        style={{
-          padding: "50px",
-          outline: "none",
-          minWidth: "50%",
-        }}
+        className="card"
+        // style={{
+        //   padding: "50px",
+        //   outline: "none",
+        //   minWidth: "50%",
+        // }}
       >
         <Grid container direction="column" alignItems="center" spacing={3}>
           <Grid container item alignItems="center">

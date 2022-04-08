@@ -85,13 +85,22 @@ body {
 }
 .filter_job {
   position: fixed;
-  left: 60%;
+  left: 59%;
   top: 22%;
 }
 
 .searchJob {
   position: relative;
-  /* top: -210px; */
+}
+.job_card .card,
+.filter_job .card {
+  padding: 15px;
+  margin: 15px 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(224, 222, 222);
+}
+.filter_job .card {
+  padding-right: 30px;
 }
 
 .sorry_line {
