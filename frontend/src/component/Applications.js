@@ -130,93 +130,96 @@ const ApplicationTile = (props) => {
   };
 
   return (
-    <Paper className={classes.jobTileOuter} elevation={3}>
-      <Grid container>
-        <Grid container item xs={9} spacing={1} direction="column">
-          <Grid item>
-            <Typography variant="h5">{application.job.title}</Typography>
-          </Grid>
-          <Grid item>Posted By: {application.recruiter.name}</Grid>
-          <Grid item>Role : {application.job.jobType}</Grid>
-          <Grid item>Salary : &#8377; {application.job.salary} per month</Grid>
-          <Grid item>
-            Duration :{" "}
-            {application.job.duration !== 0
-              ? `${application.job.duration} month`
-              : `Flexible`}
-          </Grid>
-          <Grid item>
+    // <div className="dashboard_container">
+    <div className="dashboard">
+      <Paper className="card" elevation={1}>
+        <div className="dashboard-container">
+          <div>
+            <h2 style={{ fontWeight: "bolder" }}>{application.job.title}</h2>
+          </div>
+          <div className="recruiter">
+            <div>Posted By: {application.recruiter.name}</div>
+            <div>Role : {application.job.jobType}</div>
+          </div>
+          <div className="salary">
+            <div>Salary :{application.job.salary}</div>
+            <div>
+              Duration :{" "}
+              {application.job.duration !== 0
+                ? `${application.job.duration} month`
+                : `Flexible`}
+            </div>
+          </div>
+          <div className="dashboard_skills">
             {application.job.skillsets.map((skill) => (
               <Chip label={skill} style={{ marginRight: "2px" }} />
             ))}
-          </Grid>
-          <Grid item>Applied On: {appliedOn.toLocaleDateString()}</Grid>
-          {application.status === "accepted" ||
-          application.status === "finished" ? (
-            <Grid item>Joined On: {joinedOn.toLocaleDateString()}</Grid>
-          ) : null}
-        </Grid>
-        <Grid item container direction="column" xs={3}>
-          <Grid item xs>
-            <Paper
-              className={classes.statusBlock}
-              style={{
-                background: colorSet[application.status],
-                color: "#ffffff",
-              }}
-            >
-              {application.status}
-            </Paper>
-          </Grid>
-          {application.status === "accepted" ||
-          application.status === "finished" ? (
-            <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.statusBlock}
-                onClick={() => {
-                  fetchRating();
-                  setOpen(true);
-                }}
-              >
-                Rate Job
-              </Button>
-            </Grid>
-          ) : null}
-        </Grid>
-      </Grid>
-      <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
-        <Paper
-          style={{
-            padding: "20px",
-            outline: "none",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            minWidth: "30%",
-            alignItems: "center",
-          }}
+          </div>
+          <div className="applied">
+            <div item>Applied On: {appliedOn.toLocaleDateString()}</div>
+            {application.status === "accepted" ||
+            application.status === "finished" ? (
+              <div item>Joined On: {joinedOn.toLocaleDateString()}</div>
+            ) : null}
+          </div>
+
+          <div className="btn_container">
+            <div className="btngroup">
+              <button className="btn">{application.status}</button>
+            </div>
+            {application.status === "accepted" ||
+            application.status === "finished" ? (
+              <div>
+                <button
+                  className="btn_blue"
+                  onClick={() => {
+                    fetchRating();
+                    setOpen(true);
+                  }}
+                >
+                  Rate Job
+                </button>
+              </div>
+            ) : null}
+          </div>
+        </div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          className={classes.popupDialog}
         >
-          <Rating
-            name="simple-controlled"
-            style={{ marginBottom: "30px" }}
-            value={rating === -1 ? null : rating}
-            onChange={(event, newValue) => {
-              setRating(newValue);
+          <Paper
+            style={{
+              padding: "20px",
+              outline: "none",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              minWidth: "30%",
+              alignItems: "center",
             }}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ padding: "10px 50px" }}
-            onClick={() => changeRating()}
           >
-            Submit
-          </Button>
-        </Paper>
-      </Modal>
-    </Paper>
+            <Rating
+              name="simple-controlled"
+              style={{ marginBottom: "30px" }}
+              value={rating === -1 ? null : rating}
+              onChange={(event, newValue) => {
+                setRating(newValue);
+              }}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ padding: "10px 50px" }}
+              onClick={() => changeRating()}
+            >
+              Submit
+            </Button>
+          </Paper>
+        </Modal>
+      </Paper>
+    </div>
+    // </div>
   );
 };
 
@@ -259,7 +262,12 @@ const Applications = (props) => {
       style={{ padding: "30px", minHeight: "93vh" }}
     >
       <Grid item>
-        <Typography variant="h2">Applications</Typography>
+        <h2
+          className="border_bottom"
+          style={{ fontWeight: "bolder", marginTop: "-30px" }}
+        >
+          Applications
+        </h2>
       </Grid>
       <Grid
         container
@@ -272,13 +280,16 @@ const Applications = (props) => {
       >
         {applications.length > 0 ? (
           applications.map((obj) => (
-            <Grid item>
+            // <Grid item>
+            <div className="dashboard_container">
               <ApplicationTile application={obj} />
-            </Grid>
+            </div>
+            // </Grid>
           ))
         ) : (
           <Typography variant="h5" style={{ textAlign: "center" }}>
-            No Applications Found
+            No Applications Found ! Kindly check on browse section apply
+            internship/fulltime role :)
           </Typography>
         )}
       </Grid>

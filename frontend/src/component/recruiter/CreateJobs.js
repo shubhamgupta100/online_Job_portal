@@ -100,19 +100,32 @@ const CreateJobs = (props) => {
         style={{ padding: "30px", minHeight: "93vh", width: "" }}
       >
         <Grid item>
-          <Typography variant="h2">Add Job</Typography>
+          <h1
+            className="border_bottom"
+            style={{ fontWeight: "bolder", marginTop: "-60px" }}
+          >
+            Add Job
+          </h1>
         </Grid>
         <Grid item container xs direction="column" justify="center">
-          <Grid item>
+          <Grid
+            item
+            xs
+            style={{ width: "70%", position: "relative", margin: "auto" }}
+          >
             <Paper
               style={{
-                padding: "20px",
+                padding: "30px 20px",
                 outline: "none",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
+                borderTopLeftRadius: "30px",
+                borderBottomRightRadius: "30px",
+                border: "1px solid rgb(224, 222, 222)",
               }}
+              elevation={1}
             >
               <Grid
                 container
@@ -246,14 +259,12 @@ const CreateJobs = (props) => {
                   />
                 </Grid>
               </Grid>
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ padding: "10px 50px", marginTop: "30px" }}
+              <button
+                className="profile_btn_recruiter"
                 onClick={() => handleUpdate()}
               >
                 Create Job
-              </Button>
+              </button>
             </Paper>
           </Grid>
         </Grid>

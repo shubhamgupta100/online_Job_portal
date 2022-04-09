@@ -124,19 +124,28 @@ const Profile = (props) => {
         style={{ padding: "30px", minHeight: "93vh" }}
       >
         <Grid item>
-          <Typography variant="h2">Profile</Typography>
+          <h1
+            className="border_bottom"
+            style={{ fontWeight: "bolder", marginTop: "-30px" }}
+          >
+            Profile
+          </h1>
         </Grid>
-        <Grid item xs style={{ width: "100%" }}>
+        <Grid item xs style={{ width: "70%" }}>
           <Paper
             style={{
-              padding: "20px",
+              padding: "30px 20px",
               outline: "none",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
+              borderTopLeftRadius: "30px",
+              borderBottomRightRadius: "30px",
+              border: "1px solid rgb(224, 222, 222)",
               //   width: "60%",
             }}
+            elevation={1}
           >
             <Grid container direction="column" alignItems="stretch" spacing={3}>
               <Grid item>
@@ -184,14 +193,15 @@ const Profile = (props) => {
                 />
               </Grid>
             </Grid>
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ padding: "10px 50px", marginTop: "30px" }}
+            <button
+              className="profile_btn_recruiter"
+              // variant="contained"
+              // color="primary"
+              // style={{ padding: "10px 50px", marginTop: "30px" }}
               onClick={() => handleUpdate()}
             >
               Update Details
-            </Button>
+            </button>
           </Paper>
         </Grid>
       </Grid>

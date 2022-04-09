@@ -2,6 +2,13 @@ body {
   margin: 0;
   font-family: "Ovo" !important;
 }
+/* Common */
+.border_bottom {
+  border-bottom: 4px solid #0d6efd;
+  width: 200px;
+  text-align: center;
+  margin-bottom: 30px;
+}
 /* Navbar */
 .nav-container {
   background: white;
@@ -16,8 +23,8 @@ body {
   margin: 0;
   padding: 0;
   display: inline-block;
-  /* line-height: 18px;
-  font-size: 18px; */
+  /* line-height: 20px;
+  font-size: 20px; */
 }
 .other ul li h5 {
   font-weight: 600;
@@ -27,7 +34,7 @@ body {
 .filter_job button {
   color: white;
   font-weight: bolder;
-  padding: 10px 30px;
+  padding: 10px 20px;
   border-radius: 20px;
   outline: none;
   border: none;
@@ -146,4 +153,109 @@ body {
   border: none;
   color: white;
   background-color: #0d6efd;
+}
+
+/* Dashboard */
+.dashboard_container {
+  width: 70% !important;
+  position: relative;
+  margin: auto;
+}
+
+.dashboard .card {
+  padding: 15px;
+  margin: 20px 10px;
+  border-radius: 20px;
+  border: 1px solid rgb(224, 222, 222);
+}
+.recruiter,
+.salary,
+.applied,
+.btn_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0px;
+  font-weight: bold;
+}
+.dashboard_skills {
+  font-weight: bolder;
+}
+.btngroup .btn {
+  width: 100px;
+  font-weight: bolder;
+  /* padding: 15px 13px; */
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  color: white;
+  /* background-color: hsl(127, 93%, 38%); */
+  background-color: green;
+}
+.btn_blue {
+  width: 100px;
+  font-weight: bolder;
+  padding: 5px 13px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: #0d6efd;
+}
+
+/* Recruiter */
+
+/* Profile */
+
+.profile_btn_recruiter {
+  width: 150px;
+  margin-top: 20px;
+  font-weight: bolder;
+  padding: 10px 16px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: #0d6efd;
+}
+
+/* My Jobs */
+.recruiter_title_section,
+.recruiter_job_type,
+.recruiter_postion,
+.recruiter_button_container,
+.emp_btn_container {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.recruiter_button_container button,
+.emp_btn_container button {
+  margin-top: 10px;
+  font-weight: bolder;
+  padding: 5px 13px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+}
+.recruiter_button_container button.view {
+  color: white;
+  background-color: #0d6efd;
+}
+
+.recruiter_button_container button.delete {
+  color: white;
+  background-color: #f5194c;
+}
+.resume_download {
+  background-color: #fc7a1e;
+  color: white;
+}
+.end_job {
+  background-color: #f5194c;
+  color: white;
+}
+.rate_std,
+.std_job_status {
+  background-color: #0d6efd;
+  color: white;
 }

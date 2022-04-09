@@ -523,167 +523,201 @@ const ApplicationTile = (props) => {
   };
 
   return (
-    <Paper className={classes.jobTileOuter} elevation={3}>
-      <Grid container>
-        <Grid
-          item
-          xs={2}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Avatar
-            src={`${server}${application.jobApplicant.profile}`}
-            className={classes.avatar}
-          />
-        </Grid>
-        <Grid container item xs={7} spacing={1} direction="column">
-          <Grid item>
-            <Typography variant="h5">
-              {application.jobApplicant.name}
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Rating
-              value={
-                application.jobApplicant.rating !== -1
-                  ? application.jobApplicant.rating
-                  : null
-              }
-              readOnly
+    <div
+      style={{
+        width: "70%",
+        position: "relative",
+        margin: "auto",
+        // padding: "10px",
+      }}
+    >
+      <Paper
+        style={{
+          padding: "20px",
+          outline: "none",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: "10px",
+          border: "1px solid rgb(224, 222, 222)",
+          marginBottom: "20px",
+        }}
+        elevation={1}
+      >
+        <Grid container>
+          <Grid
+            item
+            xs={2}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginRight: "20px",
+            }}
+          >
+            <Avatar
+              src={`${server}${application.jobApplicant.profile}`}
+              className={classes.avatar}
             />
           </Grid>
-          <Grid item>Job Title: {application.job.title}</Grid>
-          <Grid item>Role: {application.job.jobType}</Grid>
-          <Grid item>Applied On: {appliedOn.toLocaleDateString()}</Grid>
-          <Grid item>
-            SOP: {application.sop !== "" ? application.sop : "Not Submitted"}
-          </Grid>
-          <Grid item>
-            {application.jobApplicant.skills.map((skill) => (
-              <Chip label={skill} style={{ marginRight: "2px" }} />
-            ))}
+          <Grid container item xs={9} spacing={1} direction="column">
+            <div className="recruiter_title_section">
+              <div>
+                <h2>{application.jobApplicant.name}</h2>
+              </div>
+              <div>
+                <Rating
+                  value={
+                    application.jobApplicant.rating !== -1
+                      ? application.jobApplicant.rating
+                      : null
+                  }
+                  readOnly
+                />
+              </div>
+            </div>
+
+            <div className="recruiter_job_type">
+              <div>Job Title: {application.job.title}</div>
+              <div>Role: {application.job.jobType}</div>
+              <div item>Applied On: {appliedOn.toLocaleDateString()}</div>
+            </div>
+
+            <div>
+              <div>
+                SOP:{" "}
+                {application.sop !== "" ? application.sop : "Not Submitted"}
+              </div>
+            </div>
+
+            <div>
+              <div>
+                {application.jobApplicant.skills.map((skill) => (
+                  <Chip
+                    label={skill}
+                    style={{
+                      marginRight: "2px",
+                      fontWeight: "bolder",
+                      fontFamily: "Ovo",
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="emp_btn_container" style={{ margin: "5px" }}>
+              <div>
+                <button className="resume_download" onClick={() => getResume()}>
+                  Download Resume
+                </button>
+              </div>
+
+              <div>
+                <button
+                  className="end_job"
+                  onClick={() => {
+                    setOpenEndJob(true);
+                  }}
+                >
+                  End Job
+                </button>
+              </div>
+
+              <div>
+                <button
+                  className="rate_std"
+                  onClick={() => {
+                    setOpen(true);
+                  }}
+                >
+                  Rate Applicant
+                </button>
+              </div>
+            </div>
           </Grid>
         </Grid>
-        <Grid item container direction="column" xs={3}>
-          <Grid item>
-            <Button
-              variant="contained"
-              className={classes.statusBlock}
-              color="primary"
-              onClick={() => getResume()}
-            >
-              Download Resume
-            </Button>
-          </Grid>
-          <Grid item container xs>
-            {/* {buttonSet[application.status]} */}
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.statusBlock}
-              style={{
-                background: "#09BC8A",
-              }}
-              onClick={() => {
-                setOpenEndJob(true);
-              }}
-            >
-              End Job
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.statusBlock}
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
-              Rate Applicant
-            </Button>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
-        <Paper
-          style={{
-            padding: "20px",
-            outline: "none",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            minWidth: "30%",
-            alignItems: "center",
-          }}
+        <Modal
+          open={open}
+          onClose={handleClose}
+          className={classes.popupDialog}
         >
-          <Rating
-            name="simple-controlled"
-            style={{ marginBottom: "30px" }}
-            value={rating === -1 ? null : rating}
-            onChange={(event, newValue) => {
-              setRating(newValue);
+          <Paper
+            style={{
+              padding: "20px",
+              outline: "none",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              minWidth: "30%",
+              alignItems: "center",
             }}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ padding: "10px 50px" }}
-            onClick={() => changeRating()}
           >
-            Submit
-          </Button>
-        </Paper>
-      </Modal>
-      <Modal
-        open={openEndJob}
-        onClose={handleCloseEndJob}
-        className={classes.popupDialog}
-      >
-        <Paper
-          style={{
-            padding: "20px",
-            outline: "none",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            minWidth: "30%",
-            alignItems: "center",
-          }}
+            <Rating
+              name="simple-controlled"
+              style={{ marginBottom: "30px" }}
+              value={rating === -1 ? null : rating}
+              onChange={(event, newValue) => {
+                setRating(newValue);
+              }}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ padding: "10px 50px" }}
+              onClick={() => changeRating()}
+            >
+              Submit
+            </Button>
+          </Paper>
+        </Modal>
+        <Modal
+          open={openEndJob}
+          onClose={handleCloseEndJob}
+          className={classes.popupDialog}
         >
-          <Typography variant="h4" style={{ marginBottom: "10px" }}>
-            Are you sure?
-          </Typography>
-          <Grid container justify="center" spacing={5}>
-            <Grid item>
-              <Button
-                variant="contained"
-                color="secondary"
-                style={{ padding: "10px 50px" }}
-                onClick={() => {
-                  updateStatus("finished");
-                }}
-              >
-                Yes
-              </Button>
+          <Paper
+            style={{
+              padding: "20px",
+              outline: "none",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              minWidth: "30%",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h4" style={{ marginBottom: "10px" }}>
+              Are you sure?
+            </Typography>
+            <Grid container justify="center" spacing={5}>
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  style={{ padding: "10px 50px" }}
+                  onClick={() => {
+                    updateStatus("finished");
+                  }}
+                >
+                  Yes
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  style={{ padding: "10px 50px" }}
+                  onClick={() => handleCloseEndJob()}
+                >
+                  Cancel
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ padding: "10px 50px" }}
-                onClick={() => handleCloseEndJob()}
-              >
-                Cancel
-              </Button>
-            </Grid>
-          </Grid>
-        </Paper>
-      </Modal>
-    </Paper>
+          </Paper>
+        </Modal>
+      </Paper>
+    </div>
   );
 };
 
@@ -776,7 +810,12 @@ const AcceptedApplicants = (props) => {
         style={{ padding: "30px", minHeight: "93vh" }}
       >
         <Grid item>
-          <Typography variant="h2">Employees</Typography>
+          <h2
+            className="border_bottom"
+            style={{ fontWeight: "bolder", marginTop: "-30px" }}
+          >
+            Employees
+          </h2>
         </Grid>
         <Grid item>
           <IconButton onClick={() => setFilterOpen(true)}>

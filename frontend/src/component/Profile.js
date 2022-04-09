@@ -221,21 +221,29 @@ const Profile = (props) => {
         item
         direction="column"
         alignItems="center"
-        style={{ padding: "30px", minHeight: "93vh" }}
+        style={{ padding: "0 30px", minHeight: "93vh" }}
       >
         <Grid item>
-          <Typography variant="h2">Profile</Typography>
+          <h1
+            className="border_bottom"
+            style={{ fontWeight: "bolder", marginTop: "-30px" }}
+          >
+            Profile
+          </h1>
         </Grid>
         <Grid item xs>
           <Paper
             style={{
-              padding: "20px",
+              padding: "25px 30px",
               outline: "none",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
+              borderRadius: "20px",
+              border: "1px solid rgb(224, 222, 222)",
             }}
+            elevation={1}
           >
             <Grid container direction="column" alignItems="stretch" spacing={3}>
               <Grid item>

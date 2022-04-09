@@ -23,13 +23,13 @@ const Navbar = () => {
           userType() === "recruiter" ? (
             <>
               <ul class="navbar-nav">
-                <li class="nav-item">
+                {/* <li class="nav-item">
                   <Link class="nav-link" style={{ color: "black" }} to="/home">
                     <h5>Home</h5>
                     <span class="sr-only">(current)</span>
                   </Link>
-                </li>
-                <li class="nav-item">
+                </li> */}
+                <li class="nav-item" style={{ paddingTop: "8px" }}>
                   <Link
                     class="nav-link"
                     style={{ color: "black" }}
@@ -40,7 +40,7 @@ const Navbar = () => {
                   </Link>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" style={{ paddingTop: "8px" }}>
                   <Link
                     class="nav-link"
                     style={{ color: "black" }}
@@ -51,7 +51,7 @@ const Navbar = () => {
                   </Link>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" style={{ paddingTop: "8px" }}>
                   <Link
                     class="nav-link"
                     style={{ color: "black" }}
@@ -62,7 +62,7 @@ const Navbar = () => {
                   </Link>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" style={{ paddingTop: "8px" }}>
                   <Link
                     class="nav-link"
                     style={{ color: "black" }}
@@ -72,6 +72,7 @@ const Navbar = () => {
                     <span class="sr-only">(current)</span>
                   </Link>
                 </li>
+
                 <li class="nav-item">
                   <Link
                     class="nav-link"

@@ -431,6 +431,7 @@ const ApplicationTile = (props) => {
             style={{
               background: colorSet["shortlisted"],
               color: "#ffffff",
+              fontFamily: "Ovo",
             }}
             onClick={() => updateStatus("shortlisted")}
           >
@@ -443,6 +444,7 @@ const ApplicationTile = (props) => {
             style={{
               background: colorSet["rejected"],
               color: "#ffffff",
+              fontFamily: "Ovo",
             }}
             onClick={() => updateStatus("rejected")}
           >
@@ -459,6 +461,7 @@ const ApplicationTile = (props) => {
             style={{
               background: colorSet["accepted"],
               color: "#ffffff",
+              fontFamily: "Ovo",
             }}
             onClick={() => updateStatus("accepted")}
           >
@@ -471,6 +474,7 @@ const ApplicationTile = (props) => {
             style={{
               background: colorSet["rejected"],
               color: "#ffffff",
+              fontFamily: "Ovo",
             }}
             onClick={() => updateStatus("rejected")}
           >
@@ -487,6 +491,7 @@ const ApplicationTile = (props) => {
             style={{
               background: colorSet["rejected"],
               color: "#ffffff",
+              fontFamily: "Ovo",
             }}
           >
             Rejected
@@ -502,6 +507,9 @@ const ApplicationTile = (props) => {
             style={{
               background: colorSet["accepted"],
               color: "#ffffff",
+              fontFamily: "Ovo",
+              padding: "6px 12px",
+              borderRadius: "20px",
             }}
           >
             Accepted
@@ -517,6 +525,7 @@ const ApplicationTile = (props) => {
             style={{
               background: colorSet["cancelled"],
               color: "#ffffff",
+              fontFamily: "Ovo",
             }}
           >
             Cancelled
@@ -532,6 +541,9 @@ const ApplicationTile = (props) => {
             style={{
               background: colorSet["finished"],
               color: "#ffffff",
+              padding: "5px 15px",
+              borderRadius: "20px",
+              fontFamily: "Ovo",
             }}
           >
             Finished
@@ -542,97 +554,132 @@ const ApplicationTile = (props) => {
   };
 
   return (
-    <Paper className={classes.jobTileOuter} elevation={3}>
-      <Grid container>
-        <Grid
-          item
-          xs={2}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Avatar
-            src={`${server}${application.jobApplicant.profile}`}
-            className={classes.avatar}
-          />
-        </Grid>
-        <Grid container item xs={7} spacing={1} direction="column">
-          <Grid item>
-            <Typography variant="h5">
-              {application.jobApplicant.name}
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Rating
-              value={
-                application.jobApplicant.rating !== -1
-                  ? application.jobApplicant.rating
-                  : null
-              }
-              readOnly
+    <div
+      style={{
+        width: "70%",
+        position: "relative",
+        margin: "auto",
+        // display: "flex",
+        // flexDirection: "column",
+        // justifyContent: "center",
+        // alignItems: "center",
+      }}
+    >
+      <Paper
+        style={{
+          padding: "20px",
+          outline: "none",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: "10px",
+          border: "1px solid rgb(224, 222, 222)",
+          marginTop: "20px",
+        }}
+        elevation={1}
+      >
+        <Grid container>
+          <Grid
+            item
+            xs={2}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginRight: "20px",
+            }}
+          >
+            <Avatar
+              src={`${server}${application.jobApplicant.profile}`}
+              className={classes.avatar}
             />
           </Grid>
-          <Grid item>Applied On: {appliedOn.toLocaleDateString()}</Grid>
-          <Grid item>
-            Education:{" "}
-            {application.jobApplicant.education
-              .map((edu) => {
-                return `${edu.institutionName} (${edu.startYear}-${
-                  edu.endYear ? edu.endYear : "Ongoing"
-                })`;
-              })
-              .join(", ")}
-          </Grid>
-          <Grid item>
-            SOP: {application.sop !== "" ? application.sop : "Not Submitted"}
-          </Grid>
-          <Grid item>
-            {application.jobApplicant.skills.map((skill) => (
-              <Chip label={skill} style={{ marginRight: "2px" }} />
-            ))}
+          <Grid container item xs={9} spacing={1} direction="column">
+            <div className="recruiter_title_section">
+              <div>
+                <h4>{application.jobApplicant.name}</h4>
+              </div>
+              <div>
+                <Rating
+                  value={
+                    application.jobApplicant.rating !== -1
+                      ? application.jobApplicant.rating
+                      : null
+                  }
+                  readOnly
+                />
+              </div>
+            </div>
+
+            <div className="recruiter_job_type">
+              <div>Applied On: {appliedOn.toLocaleDateString()}</div>
+              <div>
+                Education:{" "}
+                {application.jobApplicant.education
+                  .map((edu) => {
+                    return `${edu.institutionName} (${edu.startYear}-${
+                      edu.endYear ? edu.endYear : "Ongoing"
+                    })`;
+                  })
+                  .join(", ")}
+              </div>
+            </div>
+
+            <div>
+              SOP: {application.sop !== "" ? application.sop : "Not Submitted"}
+            </div>
+            <div item>
+              {application.jobApplicant.skills.map((skill) => (
+                <Chip
+                  label={skill}
+                  style={{
+                    marginRight: "6px",
+                    fontWeight: "bolder",
+                    fontFamily: "Ovo",
+                  }}
+                />
+              ))}
+            </div>
+
+            <div className="recruiter_button_container">
+              <div>
+                <button className="resume_download" onClick={() => getResume()}>
+                  Download Resume
+                </button>
+              </div>
+              <div>{buttonSet[application.status]}</div>
+            </div>
           </Grid>
         </Grid>
-        <Grid item container direction="column" xs={3}>
-          <Grid item>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          className={classes.popupDialog}
+        >
+          <Paper
+            style={{
+              padding: "20px",
+              outline: "none",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              minWidth: "30%",
+              alignItems: "center",
+            }}
+          >
             <Button
               variant="contained"
-              className={classes.statusBlock}
               color="primary"
-              onClick={() => getResume()}
+              style={{ padding: "10px 50px" }}
+              // onClick={() => changeRating()}
             >
-              Download Resume
+              Submit
             </Button>
-          </Grid>
-          <Grid item container xs>
-            {buttonSet[application.status]}
-          </Grid>
-        </Grid>
-      </Grid>
-      <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
-        <Paper
-          style={{
-            padding: "20px",
-            outline: "none",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            minWidth: "30%",
-            alignItems: "center",
-          }}
-        >
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ padding: "10px 50px" }}
-            // onClick={() => changeRating()}
-          >
-            Submit
-          </Button>
-        </Paper>
-      </Modal>
-    </Paper>
+          </Paper>
+        </Modal>
+      </Paper>
+    </div>
   );
 };
 
@@ -735,7 +782,12 @@ const JobApplications = (props) => {
         style={{ padding: "30px", minHeight: "93vh" }}
       >
         <Grid item>
-          <Typography variant="h2">Applications</Typography>
+          <h2
+            className="border_bottom"
+            style={{ fontWeight: "bolder", marginTop: "-30px" }}
+          >
+            Applications
+          </h2>
         </Grid>
         <Grid item>
           <IconButton onClick={() => setFilterOpen(true)}>
