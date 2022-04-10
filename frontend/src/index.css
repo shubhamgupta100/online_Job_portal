@@ -9,6 +9,17 @@ body {
   text-align: center;
   margin-bottom: 30px;
 }
+.border_bottom_text {
+  border-bottom: 4px solid #0d6efd;
+  width: 450px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.text_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* Navbar */
 .nav-container {
   background: white;
@@ -259,3 +270,88 @@ body {
   background-color: #0d6efd;
   color: white;
 }
+
+/* Home Page */
+
+.home_page_container {
+  width: 80%;
+  position: relative;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero_container {
+  display: flex;
+  justify-content: space-between;
+}
+.hero_container div {
+  width: 50%;
+  text-align: justify;
+  margin-right: 20px;
+}
+.hero_container h3 {
+  font-weight: bolder;
+}
+.hero_container p {
+  font-size: 16px;
+
+  font-weight: 500;
+}
+.hero_container img {
+  width: 400px;
+  height: 500px;
+  position: relative;
+  left: 20%;
+  border-radius: 15px;
+}
+.hero_container button {
+  font-weight: bolder;
+  padding: 6px 15px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: #0d6efd;
+}
+.inner_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.forward_arrow {
+  position: relative;
+  top: -3px;
+  left: 5px;
+}
+.card_container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+}
+.second_row {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Footer */
+
+/* .footer {
+  width: 100%;
+  background-color: #0d6efd;
+}
+.footer_wrapper {
+  width: 80%;
+  position: relative;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+.about_us {
+  width: 40%;
+  color: white;
+  text-align: justify;
+} */

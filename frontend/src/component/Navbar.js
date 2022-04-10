@@ -133,14 +133,16 @@ const Navbar = () => {
             <ul>
               <li class="nav-item">
                 <Link class="nav-link" style={{ color: "black" }} to="/login">
-                  <h5>Login</h5>
+                  <button>Login</button>
+                  {/* <h5>Login</h5> */}
                   <span class="sr-only">(current)</span>
                 </Link>
               </li>
 
               <li class="nav-item">
                 <Link class="nav-link" style={{ color: "black" }} to="/signup">
-                  <h5>SignUp</h5>
+                  <button>SignUp</button>
+                  {/* <h5>SignUp</h5> */}
                   <span class="sr-only">(current)</span>
                 </Link>
               </li>

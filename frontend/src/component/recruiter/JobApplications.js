@@ -559,10 +559,6 @@ const ApplicationTile = (props) => {
         width: "70%",
         position: "relative",
         margin: "auto",
-        // display: "flex",
-        // flexDirection: "column",
-        // justifyContent: "center",
-        // alignItems: "center",
       }}
     >
       <Paper
@@ -595,7 +591,7 @@ const ApplicationTile = (props) => {
               className={classes.avatar}
             />
           </Grid>
-          <Grid container item xs={9} spacing={1} direction="column">
+          <Grid container item xs={9} spacing={2} direction="column">
             <div className="recruiter_title_section">
               <div>
                 <h4>{application.jobApplicant.name}</h4>

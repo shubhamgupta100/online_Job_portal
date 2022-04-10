@@ -110,9 +110,9 @@ const Login = (props) => {
       <Paper elevation={1} className="card">
         <Grid container direction="column" spacing={4} alignItems="center">
           <Grid item>
-            <Typography variant="h3" component="h2">
+            <h1 className="border_bottom" style={{ fontWeight: "bolder" }}>
               Login
-            </Typography>
+            </h1>
           </Grid>
           <Grid item>
             <EmailInput
