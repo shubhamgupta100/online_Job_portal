@@ -61,7 +61,7 @@ function App() {
               <Route exact path="/logout">
                 <Logout />
               </Route>
-              <Route exact path="/home">
+              <Route exact path="/browse">
                 <Home />
               </Route>
               <Route exact path="/applications">

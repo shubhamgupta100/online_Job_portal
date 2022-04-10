@@ -305,14 +305,17 @@ const Profile = (props) => {
                 />
               </Grid>
             </Grid>
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ padding: "10px 50px", marginTop: "30px" }}
+            <button
+              className="profile_update_button"
+              style={{
+                marginTop: "20px",
+                paddingLeft: "30px",
+                paddingRight: "30px",
+              }}
               onClick={() => handleUpdate()}
             >
               Update Details
-            </Button>
+            </button>
           </Paper>
         </Grid>
       </Grid>

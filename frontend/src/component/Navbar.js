@@ -88,8 +88,12 @@ const Navbar = () => {
             <>
               <ul>
                 <li class="nav-item">
-                  <Link class="nav-link" style={{ color: "black" }} to="/home">
-                    <h5>Home</h5>
+                  <Link
+                    class="nav-link"
+                    style={{ color: "black" }}
+                    to="/browse"
+                  >
+                    <h5>Browse </h5>
                     <span class="sr-only">(current)</span>
                   </Link>
                 </li>

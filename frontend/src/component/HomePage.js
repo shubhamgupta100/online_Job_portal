@@ -86,7 +86,7 @@ export default function HomePage({ auth }) {
           </p>
 
           {auth !== null ? (
-            <Link to="/home">
+            <Link to="/browse">
               <button>
                 Browse Internship/Jobs
                 <span className="forward_arrow">

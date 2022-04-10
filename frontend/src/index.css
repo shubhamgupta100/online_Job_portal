@@ -305,7 +305,8 @@ body {
   left: 20%;
   border-radius: 15px;
 }
-.hero_container button {
+.hero_container button,
+.profile_update_button {
   font-weight: bolder;
   padding: 6px 15px;
   border-radius: 20px;
@@ -355,3 +356,18 @@ body {
   color: white;
   text-align: justify;
 } */
+
+/* Pagenot found */
+
+.PageNotFound {
+  margin: auto;
+  text-align: center;
+  /* padding: 10vmax; */
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  position: relative;
+  top: -100px !important;
+}

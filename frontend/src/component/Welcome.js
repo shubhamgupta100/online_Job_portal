@@ -1,6 +1,7 @@
 import { Grid, Typography } from "@material-ui/core";
 // import Footer from "./Footer";
 import HomePage from "./HomePage";
+import PageNotFound from "./PageNotFound";
 
 const Welcome = (props) => {
   let auth = props.isAuth();
@@ -13,20 +14,7 @@ const Welcome = (props) => {
 };
 
 export const ErrorPage = (props) => {
-  return (
-    <Grid
-      container
-      item
-      direction="column"
-      alignItems="center"
-      justify="center"
-      style={{ padding: "30px", minHeight: "93vh" }}
-    >
-      <Grid item>
-        <Typography variant="h2">Error 404</Typography>
-      </Grid>
-    </Grid>
-  );
+  return <PageNotFound />;
 };
 
 export default Welcome;
