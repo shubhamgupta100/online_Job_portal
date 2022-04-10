@@ -10,13 +10,14 @@ const FileUploadInput = (props) => {
 
   const { uploadTo, identifier, handleInput } = props;
 
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState(null);
   const [uploadPercentage, setUploadPercentage] = useState(0);
 
   const handleUpload = () => {
-    console.log(file);
+    console.log("after uploading files", file);
     const data = new FormData();
     data.append("file", file);
+    console.log("file", data);
     Axios.post(uploadTo, data, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -39,14 +40,15 @@ const FileUploadInput = (props) => {
         });
       })
       .catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
+        console.log("error while uploading file", err);
         setPopup({
           open: true,
           severity: "error",
-          message: err.response.statusText,
-          //   message: err.response.data
-          //     ? err.response.data.message
-          //     : err.response.statusText,
+          // message: err,
+          // message: err.response.data
+          //   ? err.response.data.message
+          //   : err.response.statusText,
         });
       });
   };
@@ -65,10 +67,11 @@ const FileUploadInput = (props) => {
             <input
               type="file"
               style={{ display: "none" }}
+              // name="file"
               onChange={(event) => {
-                console.log(event.target.files);
                 setUploadPercentage(0);
                 setFile(event.target.files[0]);
+                console.log("files", event.target.files[0]);
               }}
               // onChange={onChange}
               // onChange={

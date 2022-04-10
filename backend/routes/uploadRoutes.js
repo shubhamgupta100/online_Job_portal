@@ -7,9 +7,7 @@ const { promisify } = require("util");
 const pipeline = promisify(require("stream").pipeline);
 
 const router = express.Router();
-
 const upload = multer();
-
 router.post("/resume", upload.single("file"), (req, res) => {
   const { file } = req;
   if (file.detectedFileExtension != ".pdf") {
@@ -36,9 +34,12 @@ router.post("/resume", upload.single("file"), (req, res) => {
       });
   }
 });
+// const storage=multe
 
 router.post("/profile", upload.single("file"), (req, res) => {
+  console.log("file name", req.file);
   const { file } = req;
+  console.log("fileName", file);
   if (
     file.detectedFileExtension != ".jpg" &&
     file.detectedFileExtension != ".png"

@@ -7,7 +7,6 @@ const path = require("path");
 const db = require("./config/mongoose");
 const app = express();
 if (process.env.NODE_ENV !== "PRODUCTION") {
-  console.log("shubh");
   require("dotenv").config({ path: "backend/config/config.env" });
 }
 const port = process.env.PORT || 4444;
@@ -15,6 +14,7 @@ const port = process.env.PORT || 4444;
 if (!fs.existsSync("./public")) {
   fs.mkdirSync("./public");
 }
+// const x = require('../backend/public/resume')
 if (!fs.existsSync("./public/resume")) {
   fs.mkdirSync("./public/resume");
 }
@@ -42,6 +42,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("shubham");
   console.log(`Server started on port ${port}`);
 });
