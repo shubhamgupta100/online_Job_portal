@@ -8,7 +8,7 @@ const pipeline = promisify(require("stream").pipeline);
 
 const router = express.Router();
 const upload = multer();
-router.post("/resume", upload.single("file"), (req, res) => {
+router.post("/resume", upload.single("file"), (req, res, next) => {
   const { file } = req;
   if (file.detectedFileExtension != ".pdf") {
     res.status(400).json({
@@ -36,7 +36,7 @@ router.post("/resume", upload.single("file"), (req, res) => {
 });
 // const storage=multe
 
-router.post("/profile", upload.single("file"), (req, res) => {
+router.post("/profile", upload.none(), (req, res, next) => {
   console.log("file name", req.file);
   const { file } = req;
   console.log("fileName", file);
@@ -49,7 +49,6 @@ router.post("/profile", upload.single("file"), (req, res) => {
     });
   } else {
     const filename = `${uuidv4()}${file.detectedFileExtension}`;
-
     pipeline(
       file.stream,
       fs.createWriteStream(`${__dirname}/../public/profile/${filename}`)
