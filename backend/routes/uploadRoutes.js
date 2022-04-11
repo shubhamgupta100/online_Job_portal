@@ -20,10 +20,7 @@ router.post("/resume", upload.single("file"), (req, res, next) => {
   // } else {
   // const filename = `${uuidv4()}${file.detectedFileExtension}`;
 
-  pipeline(
-    stream,
-    fs.createWriteStream(`${__dirname}/../public/resume/${filename}`)
-  )
+  pipeline(stream, fs.createWriteStream(`/../public/resume/${filename}`))
     .then(() => {
       res.send({
         message: "File uploaded successfully",
