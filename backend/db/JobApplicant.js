@@ -53,6 +53,16 @@ let schema = new mongoose.Schema(
     resume: {
       type: String,
     },
+    // profile: {
+    //   public_id: {
+    //     type: String,
+    //     required: true,
+    //   },
+    //   url: {
+    //     type: String,
+    //     required: true,
+    //   },
+    // },
     profile: {
       type: String,
     },

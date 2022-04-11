@@ -67,7 +67,7 @@ const FileUploadInput = (props) => {
             <input
               type="file"
               style={{ display: "none" }}
-              // name="file"
+              name="file"
               onChange={(event) => {
                 setUploadPercentage(0);
                 setFile(event.target.files[0]);
