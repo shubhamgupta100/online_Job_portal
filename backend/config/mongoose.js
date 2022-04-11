@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    "mongodb://localhost/JobP",
-    // "mongodb+srv://shubhamgupta:9nsyRSb8IroSf2ud@cluster0.6rwkw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    // "mongodb://localhost/JobP",
+    "mongodb+srv://shubhamgupta:9nsyRSb8IroSf2ud@cluster0.6rwkw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     { useNewUrlParser: true },
     { useUnifiedTopology: true },
     { useCreateIndex: true }
