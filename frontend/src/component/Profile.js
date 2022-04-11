@@ -292,6 +292,7 @@ const Profile = (props) => {
                   uploadTo={apiList.uploadResume}
                   handleInput={handleInput}
                   identifier={"resume"}
+                  accept="application/pdf"
                 />
               </Grid>
               <Grid item>
@@ -302,6 +303,7 @@ const Profile = (props) => {
                   uploadTo={apiList.uploadProfileImage}
                   handleInput={handleInput}
                   identifier={"profile"}
+                  accept="image/*"
                 />
               </Grid>
             </Grid>
