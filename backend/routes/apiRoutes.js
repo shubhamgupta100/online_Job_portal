@@ -50,8 +50,8 @@ router.post("/jobs", jwtAuth, (req, res) => {
 
 // to get all the jobs [pagination] [for recruiter personal and for everyone]
 router.get("/jobs", jwtAuth, (req, res) => {
+  // router.get("/jobs", (req, res) => {
   let user = req.user;
-
   let findParams = {};
   let sortParams = {};
 
@@ -76,6 +76,21 @@ router.get("/jobs", jwtAuth, (req, res) => {
     };
   }
 
+  if (req.query.skill) {
+    // findParams = {
+    //   ...findParams,
+    //   skillsets: {
+    //     $regex: new RegExp(req.query.skill, "i"),
+    //   },
+    // };
+
+    findParams = {
+      ...findParams,
+      skillsets: {
+        $eq: req.query.skill,
+      },
+    };
+  }
   if (req.query.jobType) {
     let jobTypes = [];
     if (Array.isArray(req.query.jobType)) {
@@ -83,7 +98,7 @@ router.get("/jobs", jwtAuth, (req, res) => {
     } else {
       jobTypes = [req.query.jobType];
     }
-    console.log(jobTypes);
+    // console.log(jobTypes);
     findParams = {
       ...findParams,
       jobType: {
@@ -165,8 +180,8 @@ router.get("/jobs", jwtAuth, (req, res) => {
     }
   }
 
-  console.log(findParams);
-  console.log(sortParams);
+  // console.log(findParams);
+  // console.log(sortParams);
 
   // Job.find(findParams).collation({ locale: "en" }).sort(sortParams);
   // .skip(skip)
@@ -203,7 +218,7 @@ router.get("/jobs", jwtAuth, (req, res) => {
     ];
   }
 
-  console.log(arr);
+  // console.log(arr);
 
   Job.aggregate(arr)
     .then((posts) => {

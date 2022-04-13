@@ -536,6 +536,7 @@ const Home = (props) => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [searchOptions, setSearchOptions] = useState({
     query: "",
+    skill: "",
     jobType: {
       fullTime: false,
       partTime: false,
@@ -558,7 +559,6 @@ const Home = (props) => {
       },
     },
   });
-
   const setPopup = useContext(SetPopupContext);
   useEffect(() => {
     getData();
@@ -568,6 +568,9 @@ const Home = (props) => {
     let searchParams = [];
     if (searchOptions.query !== "") {
       searchParams = [...searchParams, `q=${searchOptions.query}`];
+    }
+    if (searchOptions.skill !== "") {
+      searchParams = [...searchParams, `skill=${searchOptions.skill}`];
     }
     if (searchOptions.jobType.fullTime) {
       searchParams = [...searchParams, `jobType=Full%20Time`];
@@ -609,7 +612,7 @@ const Home = (props) => {
     });
     searchParams = [...searchParams, ...asc, ...desc];
     const queryString = searchParams.join("&");
-    console.log(queryString);
+    // console.log(queryString);
     let address = apiList.jobs;
     if (queryString !== "") {
       address = `${address}?${queryString}`;
@@ -648,7 +651,7 @@ const Home = (props) => {
           {jobs.length > 0 ? (
             <div className="searchJob">
               <TextField
-                label="Search Jobs"
+                label="Search Jobs with job title"
                 value={searchOptions.query}
                 onChange={(event) =>
                   setSearchOptions({
@@ -670,7 +673,34 @@ const Home = (props) => {
                     </InputAdornment>
                   ),
                 }}
-                style={{ width: "500px" }}
+                style={{ width: "300px", marginLeft: "20px" }}
+                variant="outlined"
+              />
+
+              <TextField
+                label="Search Jobs with skills"
+                value={searchOptions.skill}
+                onChange={(event) =>
+                  setSearchOptions({
+                    ...searchOptions,
+                    skill: event.target.value,
+                  })
+                }
+                onKeyPress={(ev) => {
+                  if (ev.key === "Enter") {
+                    getData();
+                  }
+                }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment>
+                      <IconButton onClick={() => getData()}>
+                        <SearchIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                style={{ width: "300px", marginLeft: "10px" }}
                 variant="outlined"
               />
             </div>

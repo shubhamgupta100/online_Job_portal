@@ -70,8 +70,8 @@ export default function HomePage({ auth }) {
       <div className="hero_container">
         <div>
           <h3>
-            Welcome to Online Job Portal Here You can find internships/full time
-            job in early aged starups
+            Welcome to Online Job Portal here You can find internships/full time
+            job in early aged startups
           </h3>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting

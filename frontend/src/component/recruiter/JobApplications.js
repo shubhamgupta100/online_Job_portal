@@ -342,7 +342,7 @@ const ApplicationTile = (props) => {
   const { application, getData } = props;
   const setPopup = useContext(SetPopupContext);
   const [open, setOpen] = useState(false);
-
+  console.log("props", props);
   const appliedOn = new Date(application.dateOfApplication);
 
   const handleClose = () => {
@@ -365,7 +365,7 @@ const ApplicationTile = (props) => {
       application.jobApplicant.resume !== ""
     ) {
       const address = `${server}${application.jobApplicant.resume}`;
-      console.log(address);
+      // console.log(address);
       axios(address, {
         method: "GET",
         responseType: "blob",
@@ -418,7 +418,7 @@ const ApplicationTile = (props) => {
           severity: "error",
           message: err.response.data.message,
         });
-        console.log(err.response);
+        // console.log(err.response);
       });
   };
 
@@ -492,6 +492,8 @@ const ApplicationTile = (props) => {
               background: colorSet["rejected"],
               color: "#ffffff",
               fontFamily: "Ovo",
+              padding: "6px 12px",
+              borderRadius: "20px",
             }}
           >
             Rejected
@@ -595,6 +597,12 @@ const ApplicationTile = (props) => {
             <div className="recruiter_title_section">
               <div>
                 <h4>{application.jobApplicant.name}</h4>
+              </div>
+
+              <div>
+                <h6 style={{ fontWeight: "bolder" }}>
+                  {application.jobApplicant.email}
+                </h6>
               </div>
               <div>
                 <Rating
