@@ -364,7 +364,9 @@ const ApplicationTile = (props) => {
       application.jobApplicant.resume &&
       application.jobApplicant.resume !== ""
     ) {
-      const address = `${server}${application.jobApplicant.resume}`;
+      // const address = `${server}${application.jobApplicant.resume}`;
+      const address = `${application.jobApplicant.resume}`;
+
       // console.log(address);
       axios(address, {
         method: "GET",
@@ -589,7 +591,8 @@ const ApplicationTile = (props) => {
             }}
           >
             <Avatar
-              src={`${server}${application.jobApplicant.profile}`}
+              // src={`${server}${application.jobApplicant.profile}`}
+              src={`${application.jobApplicant.profile}`}
               className={classes.avatar}
             />
           </Grid>
