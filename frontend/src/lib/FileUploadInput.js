@@ -14,10 +14,10 @@ const FileUploadInput = (props) => {
   const [uploadPercentage, setUploadPercentage] = useState(0);
 
   const handleUpload = () => {
-    console.log("after uploading files", file);
+    // console.log("after uploading files", file);
     const data = new FormData();
     data.append("file", file);
-    console.log("file", data);
+    // console.log("file", data);
     Axios.post(uploadTo, data, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -40,8 +40,8 @@ const FileUploadInput = (props) => {
         });
       })
       .catch((err) => {
-        console.log("eroror in response", err.response);
-        console.log("error while uploading file", err);
+        // console.log("eroror in response", err.response);
+        // console.log("error while uploading file", err);
         setPopup({
           open: true,
           severity: "error",
