@@ -12,10 +12,7 @@ router.post("/resume", upload.single("file"), (req, res, next) => {
   let stream = streamifier.createReadStream(file.buffer);
   let extension = file.originalname.split(".").pop();
   const filename = `${uuidv4()}.${extension}`;
-  pipeline(
-    stream,
-    fs.createWriteStream(`${__dirname}/../public/resume/${filename}`)
-  )
+  pipeline(stream, fs.createWriteStream(`../public/resume/${filename}`))
     .then(() => {
       res.send({
         message: "File uploaded successfully",
@@ -35,10 +32,7 @@ router.post("/profile", upload.single("file"), (req, res, next) => {
   let stream = streamifier.createReadStream(file.buffer);
   let extension = file.originalname.split(".").pop();
   const filename = `${uuidv4()}.${extension}`;
-  pipeline(
-    stream,
-    fs.createWriteStream(`${__dirname}/../public/profile/${filename}`)
-  )
+  pipeline(stream, fs.createWriteStream(`../public/profile/${filename}`))
     .then(() => {
       res.send({
         message: "Profile image uploaded successfully",
