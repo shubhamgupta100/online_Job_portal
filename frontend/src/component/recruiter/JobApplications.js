@@ -4,16 +4,16 @@ import {
   Chip,
   Grid,
   IconButton,
-  InputAdornment,
+  // InputAdornment,
   makeStyles,
   Paper,
-  TextField,
+  // TextField,
   Typography,
   Modal,
-  Slider,
+  // Slider,
   FormControlLabel,
-  FormGroup,
-  MenuItem,
+  // FormGroup,
+  // MenuItem,
   Checkbox,
   Avatar,
 } from "@material-ui/core";
@@ -342,7 +342,7 @@ const ApplicationTile = (props) => {
   const { application, getData } = props;
   const setPopup = useContext(SetPopupContext);
   const [open, setOpen] = useState(false);
-  console.log("props", props);
+  // console.log("props", props);
   const appliedOn = new Date(application.dateOfApplication);
 
   const handleClose = () => {
@@ -376,7 +376,7 @@ const ApplicationTile = (props) => {
           window.open(fileURL);
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
           setPopup({
             open: true,
             severity: "error",
@@ -746,13 +746,13 @@ const JobApplications = (props) => {
     });
     searchParams = [...searchParams, ...asc, ...desc];
     const queryString = searchParams.join("&");
-    console.log(queryString);
+    // console.log(queryString);
     let address = `${apiList.applicants}?jobId=${jobId}`;
     if (queryString !== "") {
       address = `${address}&${queryString}`;
     }
 
-    console.log(address);
+    // console.log(address);
 
     axios
       .get(address, {
@@ -761,11 +761,11 @@ const JobApplications = (props) => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setApplications(response.data);
       })
       .catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
         // console.log(err.response.data);
         setApplications([]);
         setPopup({

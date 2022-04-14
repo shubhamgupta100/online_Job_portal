@@ -303,7 +303,9 @@ body {
   height: 500px;
   position: relative;
   left: 20%;
-  border-radius: 15px;
+  border-radius: 10px;
+  border-top-left-radius: 50px;
+  border-bottom-right-radius: 50px;
 }
 .hero_container button,
 .profile_update_button {

@@ -4,20 +4,20 @@ import {
   Chip,
   Grid,
   IconButton,
-  InputAdornment,
+  // InputAdornment,
   makeStyles,
   Paper,
-  TextField,
+  // TextField,
   Typography,
   Modal,
-  Slider,
-  FormControlLabel,
-  FormGroup,
-  MenuItem,
+  // Slider,
+  // FormControlLabel,
+  // FormGroup,
+  // MenuItem,
   Checkbox,
   Avatar,
 } from "@material-ui/core";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
 import FilterListIcon from "@material-ui/icons/FilterList";
@@ -415,7 +415,7 @@ const ApplicationTile = (props) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setPopup({
           open: true,
           severity: "success",
@@ -427,7 +427,7 @@ const ApplicationTile = (props) => {
       })
       .catch((err) => {
         // console.log(err.response);
-        console.log(err);
+        // console.log(err);
         setPopup({
           open: true,
           severity: "error",
@@ -463,7 +463,7 @@ const ApplicationTile = (props) => {
       application.jobApplicant.resume !== ""
     ) {
       const address = `${server}${application.jobApplicant.resume}`;
-      console.log(address);
+      // console.log(address);
       axios(address, {
         method: "GET",
         responseType: "blob",
@@ -474,7 +474,7 @@ const ApplicationTile = (props) => {
           window.open(fileURL);
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
           setPopup({
             open: true,
             severity: "error",
@@ -517,7 +517,7 @@ const ApplicationTile = (props) => {
           severity: "error",
           message: err.response.data.message,
         });
-        console.log(err.response);
+        // console.log(err.response);
         handleCloseEndJob();
       });
   };
@@ -595,6 +595,7 @@ const ApplicationTile = (props) => {
               <div>
                 {application.jobApplicant.skills.map((skill) => (
                   <Chip
+                    key={skill}
                     label={skill}
                     style={{
                       marginRight: "2px",
@@ -770,13 +771,13 @@ const AcceptedApplicants = (props) => {
 
     searchParams = [...searchParams, ...asc, ...desc];
     const queryString = searchParams.join("&");
-    console.log(queryString);
+    // console.log(queryString);
     let address = `${apiList.applicants}`;
     if (queryString !== "") {
       address = `${address}?${queryString}`;
     }
 
-    console.log(address);
+    // console.log(address);
 
     axios
       .get(address, {
@@ -785,11 +786,11 @@ const AcceptedApplicants = (props) => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setApplications(response.data);
       })
       .catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
         // console.log(err.response.data);
         setApplications([]);
         setPopup({
@@ -834,8 +835,11 @@ const AcceptedApplicants = (props) => {
           {applications.length > 0 ? (
             applications.map((obj) => (
               <Grid item>
-                {/* {console.log(obj)} */}
-                <ApplicationTile application={obj} getData={getData} />
+                <ApplicationTile
+                  key={obj._id}
+                  application={obj}
+                  getData={getData}
+                />
               </Grid>
             ))
           ) : (

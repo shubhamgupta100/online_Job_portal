@@ -3,18 +3,18 @@ import {
   Button,
   Chip,
   Grid,
-  IconButton,
-  InputAdornment,
+  // IconButton,
+  // InputAdornment,
   makeStyles,
   Paper,
-  TextField,
+  // TextField,
   Typography,
   Modal,
-  Slider,
-  FormControlLabel,
-  FormGroup,
-  MenuItem,
-  Checkbox,
+  // Slider,
+  // FormControlLabel,
+  // FormGroup,
+  // MenuItem,
+  // Checkbox,
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
@@ -68,11 +68,11 @@ const ApplicationTile = (props) => {
       })
       .then((response) => {
         setRating(response.data.rating);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((err) => {
         // console.log(err.response);
-        console.log(err.response.data);
+        // console.log(err.response.data);
         setPopup({
           open: true,
           severity: "error",
@@ -93,7 +93,7 @@ const ApplicationTile = (props) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setPopup({
           open: true,
           severity: "success",
@@ -104,7 +104,7 @@ const ApplicationTile = (props) => {
       })
       .catch((err) => {
         // console.log(err.response);
-        console.log(err);
+        // console.log(err);
         setPopup({
           open: true,
           severity: "error",
@@ -119,15 +119,15 @@ const ApplicationTile = (props) => {
     setOpen(false);
   };
 
-  const colorSet = {
-    applied: "#3454D1",
-    shortlisted: "#DC851F",
-    accepted: "#09BC8A",
-    rejected: "#D1345B",
-    deleted: "#B49A67",
-    cancelled: "#FF8484",
-    finished: "#4EA5D9",
-  };
+  // const colorSet = {
+  //   applied: "#3454D1",
+  //   shortlisted: "#DC851F",
+  //   accepted: "#09BC8A",
+  //   rejected: "#D1345B",
+  //   deleted: "#B49A67",
+  //   cancelled: "#FF8484",
+  //   finished: "#4EA5D9",
+  // };
 
   return (
     // <div className="dashboard_container">
@@ -246,12 +246,12 @@ const Applications = (props) => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setApplications(response.data);
       })
       .catch((err) => {
         // console.log(err.response);
-        console.log(err.response.data);
+        // console.log(err.response.data);
         setPopup({
           open: true,
           severity: "error",

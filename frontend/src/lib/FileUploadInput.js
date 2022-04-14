@@ -31,7 +31,7 @@ const FileUploadInput = (props) => {
       },
     })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         handleInput(identifier, response.data.url);
         setPopup({
           open: true,
@@ -40,7 +40,7 @@ const FileUploadInput = (props) => {
         });
       })
       .catch((err) => {
-        // console.log(err.response);
+        console.log("eroror in response", err.response);
         console.log("error while uploading file", err);
         setPopup({
           open: true,
@@ -72,7 +72,7 @@ const FileUploadInput = (props) => {
               onChange={(event) => {
                 setUploadPercentage(0);
                 setFile(event.target.files[0]);
-                console.log("files", event.target.files[0]);
+                // console.log("files", event.target.files[0]);
               }}
               // onChange={onChange}
               // onChange={

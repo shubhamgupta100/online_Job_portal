@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import {
   Grid,
-  TextField,
-  Button,
-  Typography,
+  // TextField,
+  // Button,
+  // Typography,
   makeStyles,
   Paper,
 } from "@material-ui/core";
@@ -84,7 +84,7 @@ const Login = (props) => {
             severity: "success",
             message: "Logged in successfully",
           });
-          console.log(response);
+          // console.log(response);
         })
         .catch((err) => {
           setPopup({
@@ -92,7 +92,7 @@ const Login = (props) => {
             severity: "error",
             message: err.response.data.message,
           });
-          console.log(err.response);
+          // console.log(err.response);
         });
     } else {
       setPopup({

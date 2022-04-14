@@ -3,11 +3,11 @@ import {
   Grid,
   TextField,
   Button,
-  Typography,
+  // Typography,
   makeStyles,
   Paper,
   MenuItem,
-  Input,
+  // Input,
 } from "@material-ui/core";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
@@ -205,7 +205,7 @@ const Login = (props) => {
       }
     });
 
-    console.log(education);
+    // console.log(education);
 
     let updatedDetails = {
       ...signupDetails,
@@ -237,7 +237,7 @@ const Login = (props) => {
             severity: "success",
             message: "Logged in successfully",
           });
-          console.log(response);
+          // console.log(response);
         })
         .catch((err) => {
           setPopup({
@@ -245,7 +245,7 @@ const Login = (props) => {
             severity: "error",
             message: err.response.data.message,
           });
-          console.log(err.response);
+          // console.log(err.response);
         });
     } else {
       setInputErrorHandler(tmpErrorHandler);
@@ -497,7 +497,7 @@ const Login = (props) => {
                     onChange={(event) => {
                       if (
                         event.target.value.split(" ").filter(function (n) {
-                          return n != "";
+                          return n !== "";
                         }).length <= 250
                       ) {
                         handleInput("bio", event.target.value);

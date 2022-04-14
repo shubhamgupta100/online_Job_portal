@@ -12,13 +12,13 @@ import {
   Modal,
   Slider,
   FormControlLabel,
-  FormGroup,
+  // FormGroup,
   MenuItem,
   Checkbox,
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Rating from "@material-ui/lab/Rating";
-import Pagination from "@material-ui/lab/Pagination";
+// import Pagination from "@material-ui/lab/Pagination";
 import axios from "axios";
 import SearchIcon from "@material-ui/icons/Search";
 import FilterListIcon from "@material-ui/icons/FilterList";
@@ -69,7 +69,7 @@ const JobTile = (props) => {
   const [openUpdate, setOpenUpdate] = useState(false);
   const [jobDetails, setJobDetails] = useState(job);
 
-  console.log(jobDetails);
+  // console.log(jobDetails);
 
   const handleInput = (key, value) => {
     setJobDetails({
@@ -91,7 +91,7 @@ const JobTile = (props) => {
   };
 
   const handleDelete = () => {
-    console.log(job._id);
+    // console.log(job._id);
     axios
       .delete(`${apiList.jobs}/${job._id}`, {
         headers: {
@@ -108,7 +108,7 @@ const JobTile = (props) => {
         handleClose();
       })
       .catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
         setPopup({
           open: true,
           severity: "error",
@@ -135,7 +135,7 @@ const JobTile = (props) => {
         handleCloseUpdate();
       })
       .catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
         setPopup({
           open: true,
           severity: "error",
@@ -769,19 +769,19 @@ const MyJobs = (props) => {
     if (searchOptions.jobType.wfh) {
       searchParams = [...searchParams, `jobType=Work%20From%20Home`];
     }
-    if (searchOptions.salary[0] != 0) {
+    if (searchOptions.salary[0] !== 0) {
       searchParams = [
         ...searchParams,
         `salaryMin=${searchOptions.salary[0] * 1000}`,
       ];
     }
-    if (searchOptions.salary[1] != 100) {
+    if (searchOptions.salary[1] !== 100) {
       searchParams = [
         ...searchParams,
         `salaryMax=${searchOptions.salary[1] * 1000}`,
       ];
     }
-    if (searchOptions.duration != "0") {
+    if (searchOptions.duration !== "0") {
       searchParams = [...searchParams, `duration=${searchOptions.duration}`];
     }
 
@@ -800,13 +800,13 @@ const MyJobs = (props) => {
     });
     searchParams = [...searchParams, ...asc, ...desc];
     const queryString = searchParams.join("&");
-    console.log(queryString);
+    // console.log(queryString);
     let address = apiList.jobs;
     if (queryString !== "") {
       address = `${address}?${queryString}`;
     }
 
-    console.log(address);
+    // console.log(address);
     axios
       .get(address, {
         headers: {
@@ -814,11 +814,11 @@ const MyJobs = (props) => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setJobs(response.data);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        // console.log(err.response.data);
         setPopup({
           open: true,
           severity: "error",

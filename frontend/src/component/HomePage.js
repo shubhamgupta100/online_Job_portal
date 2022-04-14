@@ -68,7 +68,7 @@ export default function HomePage({ auth }) {
   return (
     <div className="home_page_container">
       <div className="hero_container">
-        <div>
+        <div style={{ marginTop: "50px" }}>
           <h3>
             Welcome to Online Job Portal here You can find internships/full time
             job in early aged startups
@@ -108,7 +108,9 @@ export default function HomePage({ auth }) {
         <div>
           <img
             // src="https://coda.newjobs.com/api/imagesproxy/ms/niche/images/articles/EducationSector.jpg"
-            src="https://i.pinimg.com/550x/b1/a4/54/b1a454ca7807d544e53e1454a694be6e.jpg"
+            // src="https://i.pinimg.com/550x/b1/a4/54/b1a454ca7807d544e53e1454a694be6e.jpg"
+            // src="https://artriva.com/media/k2/items/cache/c889234799e865bbe90cee71f6cd2e53_XL.jpg"
+            src="https://eddie-hernandez.com/wp-content/uploads/2021/03/NT-Professional_Headshot_Seated-Business-Portrait-02.jpg"
             alt="homepageimage"
           />
         </div>
@@ -126,6 +128,7 @@ export default function HomePage({ auth }) {
           {cardData.map((item, index) => {
             return (
               <MakeCard
+                key={index}
                 name={item.name}
                 title={item.title}
                 content={item.content}

@@ -469,7 +469,7 @@ router.put("/user", jwtAuth, (req, res) => {
         if (data.profile) {
           jobApplicant.profile = data.profile;
         }
-        console.log(jobApplicant);
+        // console.log(jobApplicant);
         jobApplicant
           .save()
           .then(() => {
@@ -513,7 +513,7 @@ router.post("/jobs/:id/applications", jwtAuth, (req, res) => {
     },
   })
     .then((appliedApplication) => {
-      console.log(appliedApplication);
+      // console.log(appliedApplication);
       if (appliedApplication !== null) {
         res.status(400).json({
           message: "You have already applied for this job",
@@ -862,8 +862,8 @@ router.put("/applications/:id", jwtAuth, (req, res) => {
     }
   } else {
     if (status === "cancelled") {
-      console.log(id);
-      console.log(user._id);
+      // console.log(id);
+      // console.log(user._id);
       Application.findOneAndUpdate(
         {
           _id: id,
@@ -876,7 +876,7 @@ router.put("/applications/:id", jwtAuth, (req, res) => {
         }
       )
         .then((tmp) => {
-          console.log(tmp);
+          // console.log(tmp);
           res.json({
             message: `Application ${status} successfully`,
           });
@@ -1011,7 +1011,7 @@ router.put("/rating", jwtAuth, (req, res) => {
     })
       .then((rating) => {
         if (rating === null) {
-          console.log("new rating");
+          // console.log("new rating");
           Application.countDocuments({
             userId: data.applicantId,
             recruiterId: user._id,
@@ -1177,11 +1177,11 @@ router.put("/rating", jwtAuth, (req, res) => {
       category: "job",
     })
       .then((rating) => {
-        console.log(user._id);
-        console.log(data.jobId);
-        console.log(rating);
+        // console.log(user._id);
+        // console.log(data.jobId);
+        // console.log(rating);
         if (rating === null) {
-          console.log(rating);
+          // console.log(rating);
           Application.countDocuments({
             userId: user._id,
             jobId: data.jobId,
@@ -1299,7 +1299,7 @@ router.put("/rating", jwtAuth, (req, res) => {
                     return;
                   }
                   const avg = result[0].average;
-                  console.log(avg);
+                  // console.log(avg);
 
                   Job.findOneAndUpdate(
                     {

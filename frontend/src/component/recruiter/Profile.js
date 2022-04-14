@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import {
-  Button,
+  // Button,
   Grid,
-  Typography,
-  Modal,
+  // Typography,
+  // Modal,
   Paper,
   makeStyles,
   TextField,
@@ -60,12 +60,12 @@ const Profile = (props) => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setProfileDetails(response.data);
         setPhone(response.data.contactNumber);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        // console.log(err.response.data);
         setPopup({
           open: true,
           severity: "error",
@@ -110,7 +110,7 @@ const Profile = (props) => {
           severity: "error",
           message: err.response.data.message,
         });
-        console.log(err.response);
+        // console.log(err.response);
       });
   };
 
@@ -170,7 +170,7 @@ const Profile = (props) => {
                   onChange={(event) => {
                     if (
                       event.target.value.split(" ").filter(function (n) {
-                        return n != "";
+                        return n !== "";
                       }).length <= 250
                     ) {
                       handleInput("bio", event.target.value);

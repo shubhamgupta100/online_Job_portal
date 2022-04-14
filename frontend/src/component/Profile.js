@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import {
   Button,
   Grid,
-  Typography,
-  Modal,
+  // Typography,
+  // Modal,
   Paper,
   makeStyles,
   TextField,
@@ -106,8 +106,8 @@ const MultifieldInput = (props) => {
 const Profile = (props) => {
   const classes = useStyles();
   const setPopup = useContext(SetPopupContext);
-  const [userData, setUserData] = useState();
-  const [open, setOpen] = useState(false);
+  // const [userData, setUserData] = useState();
+  // const [open, setOpen] = useState(false);
 
   const [profileDetails, setProfileDetails] = useState({
     name: "",
@@ -144,7 +144,7 @@ const Profile = (props) => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setProfileDetails(response.data);
         if (response.data.education.length > 0) {
           setEducation(
@@ -157,7 +157,7 @@ const Profile = (props) => {
         }
       })
       .catch((err) => {
-        console.log(err.response.data);
+        // console.log(err.response.data);
         setPopup({
           open: true,
           severity: "error",
@@ -166,16 +166,16 @@ const Profile = (props) => {
       });
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
-  const editDetails = () => {
-    setOpen(true);
-  };
+  // const editDetails = () => {
+  //   setOpen(true);
+  // };
 
   const handleUpdate = () => {
-    console.log(education);
+    // console.log(education);
 
     let updatedDetails = {
       ...profileDetails,
@@ -209,9 +209,9 @@ const Profile = (props) => {
           severity: "error",
           message: err.response.data.message,
         });
-        console.log(err.response);
+        // console.log(err.response);
       });
-    setOpen(false);
+    // setOpen(false);
   };
 
   return (

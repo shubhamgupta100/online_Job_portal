@@ -12,15 +12,15 @@ import {
   Modal,
   Slider,
   FormControlLabel,
-  FormGroup,
+  // FormGroup,
   MenuItem,
   Checkbox,
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
-import Pagination from "@material-ui/lab/Pagination";
+// import Pagination from "@material-ui/lab/Pagination";
 import axios from "axios";
 import SearchIcon from "@material-ui/icons/Search";
-import FilterListIcon from "@material-ui/icons/FilterList";
+// import FilterListIcon from "@material-ui/icons/FilterList";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 const JobTile = (props) => {
   const classes = useStyles();
   const { job } = props;
-  console.log("Jobs", job);
+  // console.log("Jobs", job);
   const setPopup = useContext(SetPopupContext);
 
   const [open, setOpen] = useState(false);
@@ -66,8 +66,8 @@ const JobTile = (props) => {
   };
 
   const handleApply = () => {
-    console.log(job._id);
-    console.log(sop);
+    // console.log(job._id);
+    // console.log(sop);
     axios
       .post(
         `${apiList.jobs}/${job._id}/applications`,
@@ -89,7 +89,7 @@ const JobTile = (props) => {
         handleClose();
       })
       .catch((err) => {
-        console.log(err.response);
+        // console.log(err.response);
         setPopup({
           open: true,
           severity: "error",
@@ -188,7 +188,7 @@ const JobTile = (props) => {
               onChange={(event) => {
                 if (
                   event.target.value.split(" ").filter(function (n) {
-                    return n != "";
+                    return n !== "";
                   }).length <= 250
                 ) {
                   setSop(event.target.value);
@@ -211,8 +211,13 @@ const JobTile = (props) => {
 };
 
 const FilterPopup = (props) => {
-  const classes = useStyles();
-  const { open, handleClose, searchOptions, setSearchOptions, getData } = props;
+  // const classes = useStyles();
+  const {
+    //  open, handleClose,
+    searchOptions,
+    setSearchOptions,
+    getData,
+  } = props;
   return (
     <div className="filter_job">
       <Paper
@@ -585,19 +590,19 @@ const Home = (props) => {
     if (searchOptions.jobType.wfh) {
       searchParams = [...searchParams, `jobType=Work%20From%20Home`];
     }
-    if (searchOptions.salary[0] != 0) {
+    if (searchOptions.salary[0] !== 0) {
       searchParams = [
         ...searchParams,
         `salaryMin=${searchOptions.salary[0] * 1000}`,
       ];
     }
-    if (searchOptions.salary[1] != 100) {
+    if (searchOptions.salary[1] !== 100) {
       searchParams = [
         ...searchParams,
         `salaryMax=${searchOptions.salary[1] * 1000}`,
       ];
     }
-    if (searchOptions.duration != "0") {
+    if (searchOptions.duration !== "0") {
       searchParams = [...searchParams, `duration=${searchOptions.duration}`];
     }
 

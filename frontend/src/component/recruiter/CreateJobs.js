@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import {
-  Button,
+  // Button,
   Grid,
-  Typography,
-  Modal,
+  // Typography,
+  // Modal,
   Paper,
   makeStyles,
   TextField,
@@ -54,7 +54,7 @@ const CreateJobs = (props) => {
   };
 
   const handleUpdate = () => {
-    console.log(jobDetails);
+    // console.log(jobDetails);
     axios
       .post(apiList.jobs, jobDetails, {
         headers: {
@@ -86,7 +86,7 @@ const CreateJobs = (props) => {
           severity: "error",
           message: err.response.data.message,
         });
-        console.log(err.response);
+        // console.log(err.response);
       });
   };
 
