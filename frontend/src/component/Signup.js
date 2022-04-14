@@ -225,36 +225,36 @@ const Login = (props) => {
       return tmpErrorHandler[obj].error;
     });
 
-    if (verified) {
-      axios
-        .post(apiList.signup, updatedDetails)
-        .then((response) => {
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("type", response.data.type);
-          setLoggedin(isAuth());
-          setPopup({
-            open: true,
-            severity: "success",
-            message: "Logged in successfully",
-          });
-          // console.log(response);
-        })
-        .catch((err) => {
-          setPopup({
-            open: true,
-            severity: "error",
-            message: err.response.data.message,
-          });
-          // console.log(err.response);
+    // if (verified) {
+    axios
+      .post(apiList.signup, updatedDetails)
+      .then((response) => {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("type", response.data.type);
+        setLoggedin(isAuth());
+        setPopup({
+          open: true,
+          severity: "success",
+          message: "Logged in successfully",
         });
-    } else {
-      setInputErrorHandler(tmpErrorHandler);
-      setPopup({
-        open: true,
-        severity: "error",
-        message: "Incorrect Input",
+        // console.log(response);
+      })
+      .catch((err) => {
+        setPopup({
+          open: true,
+          severity: "error",
+          message: err.response.data.message,
+        });
+        // console.log(err.response);
       });
-    }
+    // } else {
+    //   setInputErrorHandler(tmpErrorHandler);
+    //   setPopup({
+    //     open: true,
+    //     severity: "error",
+    //     message: "Incorrect Input",
+    //   });
+    // }
   };
 
   const handleLoginRecruiter = () => {

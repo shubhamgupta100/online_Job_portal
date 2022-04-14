@@ -11,6 +11,7 @@ const router = express.Router();
 
 router.post("/signup", (req, res) => {
   const data = req.body;
+
   let user = new User({
     email: data.email,
     password: data.password,
@@ -19,6 +20,7 @@ router.post("/signup", (req, res) => {
   user
     .save()
     .then(() => {
+      console.log("user", user);
       const userDetails =
         user.type == "recruiter"
           ? new Recruiter({
@@ -63,6 +65,7 @@ router.post("/signup", (req, res) => {
         });
     })
     .catch((err) => {
+      console.log(err);
       res.status(400).json(err);
     });
 });
