@@ -557,7 +557,8 @@ const ApplicationTile = (props) => {
             }}
           >
             <Avatar
-              src={`${server}${application.jobApplicant.profile}`}
+              // src={`${server}${application.jobApplicant.profile}`}
+              src={`${application.jobApplicant.profile}`}
               className={classes.avatar}
             />
           </Grid>
@@ -565,6 +566,9 @@ const ApplicationTile = (props) => {
             <div className="recruiter_title_section">
               <div>
                 <h2>{application.jobApplicant.name}</h2>
+              </div>
+              <div>
+                <b>{application.jobApplicant.email}</b>
               </div>
               <div>
                 <Rating
@@ -584,15 +588,18 @@ const ApplicationTile = (props) => {
               <div item>Applied On: {appliedOn.toLocaleDateString()}</div>
             </div>
 
-            <div>
+            {/* <div>
               <div>
-                SOP:{" "}
-                {application.sop !== "" ? application.sop : "Not Submitted"}
+                <h6 style={{ fontWeight: "bold", fontSize: "12px" }}>
+                  {" "}
+                  SOP:{" "}
+                  {application.sop !== "" ? application.sop : "Not Submitted"}
+                </h6>
               </div>
-            </div>
+            </div> */}
 
             <div>
-              <div>
+              <div style={{ marginTop: "8px" }}>
                 {application.jobApplicant.skills.map((skill) => (
                   <Chip
                     key={skill}
