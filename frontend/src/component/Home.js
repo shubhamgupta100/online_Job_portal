@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 const JobTile = (props) => {
   const classes = useStyles();
   const { job } = props;
+  console.log("Jobs", job);
   const setPopup = useContext(SetPopupContext);
 
   const [open, setOpen] = useState(false);
@@ -107,7 +108,10 @@ const JobTile = (props) => {
           <div>
             <div className="job_title">
               <div>
-                <h4>{job.title}</h4>
+                <h4>{job.companyName}</h4>
+              </div>
+              <div>
+                <h5>{job.title}</h5>
               </div>
               <div item>
                 <Rating
@@ -625,7 +629,7 @@ const Home = (props) => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setJobs(
           response.data.filter((obj) => {
             const today = new Date();
@@ -635,7 +639,7 @@ const Home = (props) => {
         );
       })
       .catch((err) => {
-        console.log(err.response.data);
+        // console.log(err.response.data);
         setPopup({
           open: true,
           severity: "error",

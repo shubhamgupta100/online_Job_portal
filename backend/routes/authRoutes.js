@@ -16,7 +16,6 @@ router.post("/signup", (req, res) => {
     password: data.password,
     type: data.type,
   });
-
   user
     .save()
     .then(() => {
@@ -25,6 +24,8 @@ router.post("/signup", (req, res) => {
           ? new Recruiter({
               userId: user._id,
               name: data.name,
+              email: data.email,
+              companyName: data.companyName,
               contactNumber: data.contactNumber,
               bio: data.bio,
             })

@@ -6,9 +6,13 @@ let schema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
+
     title: {
       type: String,
       required: true,
+    },
+    companyName: {
+      type: String,
     },
     maxApplicants: {
       type: Number,

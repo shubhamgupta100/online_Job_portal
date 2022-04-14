@@ -134,6 +134,7 @@ const Login = (props) => {
   });
 
   const [phone, setPhone] = useState("");
+  const [companyName, setCompanyName] = useState("");
 
   const [education, setEducation] = useState([
     {
@@ -157,6 +158,12 @@ const Login = (props) => {
       message: "",
     },
     name: {
+      untouched: true,
+      required: true,
+      error: false,
+      message: "",
+    },
+    companyName: {
       untouched: true,
       required: true,
       error: false,
@@ -268,6 +275,12 @@ const Login = (props) => {
     let updatedDetails = {
       ...signupDetails,
     };
+    if (companyName !== "") {
+      updatedDetails = {
+        ...signupDetails,
+        companyName: companyName,
+      };
+    }
     if (phone !== "") {
       updatedDetails = {
         ...signupDetails,
@@ -286,7 +299,7 @@ const Login = (props) => {
       return tmpErrorHandler[obj].error;
     });
 
-    console.log(updatedDetails);
+    // console.log(updatedDetails);
 
     if (verified) {
       axios
@@ -300,7 +313,7 @@ const Login = (props) => {
             severity: "success",
             message: "Logged in successfully",
           });
-          console.log(response);
+          // console.log(response);
         })
         .catch((err) => {
           setPopup({
@@ -308,7 +321,7 @@ const Login = (props) => {
             severity: "error",
             message: err.response.data.message,
           });
-          console.log(err.response);
+          // console.log(err.response);
         });
     } else {
       setInputErrorHandler(tmpErrorHandler);
@@ -449,30 +462,57 @@ const Login = (props) => {
           ) : (
             <>
               <Grid item style={{ width: "100%" }}>
-                <TextField
-                  label="Bio (upto 250 words)"
-                  multiline
-                  rows={8}
-                  style={{ width: "100%" }}
-                  variant="outlined"
-                  value={signupDetails.bio}
-                  onChange={(event) => {
-                    if (
-                      event.target.value.split(" ").filter(function (n) {
-                        return n != "";
-                      }).length <= 250
-                    ) {
-                      handleInput("bio", event.target.value);
+                <Grid item style={{ marginBottom: "30px" }}>
+                  <TextField
+                    label="Company Name"
+                    value={signupDetails.companyName}
+                    onChange={(event) =>
+                      handleInput("companyName", event.target.value)
                     }
-                  }}
-                />
-              </Grid>
-              <Grid item>
-                <PhoneInput
-                  country={"in"}
-                  value={phone}
-                  onChange={(phone) => setPhone(phone)}
-                />
+                    className={classes.inputBox}
+                    error={inputErrorHandler.name.error}
+                    helperText={inputErrorHandler.companyName.message}
+                    onBlur={(event) => {
+                      if (event.target.value === "") {
+                        handleInputError(
+                          "companyName",
+                          true,
+                          "Company Name is required"
+                        );
+                      } else {
+                        handleInputError("companyName", false, "");
+                      }
+                    }}
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item style={{ marginBottom: "30px" }}>
+                  <TextField
+                    label="Bio (upto 250 words)"
+                    multiline
+                    rows={8}
+                    style={{ width: "100%" }}
+                    variant="outlined"
+                    value={signupDetails.bio}
+                    onChange={(event) => {
+                      if (
+                        event.target.value.split(" ").filter(function (n) {
+                          return n != "";
+                        }).length <= 250
+                      ) {
+                        handleInput("bio", event.target.value);
+                      }
+                    }}
+                  />
+                </Grid>
+
+                <Grid item>
+                  <PhoneInput
+                    country={"in"}
+                    value={phone}
+                    onChange={(phone) => setPhone(phone)}
+                  />
+                </Grid>
               </Grid>
             </>
           )}

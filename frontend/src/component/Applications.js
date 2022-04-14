@@ -134,8 +134,15 @@ const ApplicationTile = (props) => {
     <div className="dashboard">
       <Paper className="card" elevation={1}>
         <div className="dashboard-container">
-          <div>
-            <h2 style={{ fontWeight: "bolder" }}>{application.job.title}</h2>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div>
+              <h3 style={{ fontWeight: "bold", color: "#0d6efd" }}>
+                Company Name: {application.recruiter.companyName}
+              </h3>
+            </div>
+            <div>
+              <h4 style={{ fontWeight: "bold" }}>{application.job.title}</h4>
+            </div>
           </div>
           <div className="recruiter">
             <div>Posted By: {application.recruiter.name}</div>

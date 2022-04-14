@@ -12,20 +12,22 @@ const Rating = require("../db/Rating");
 const router = express.Router();
 
 // To add new job
-router.post("/jobs", jwtAuth, (req, res) => {
+router.post("/jobs", jwtAuth, async (req, res) => {
   const user = req.user;
-
   if (user.type != "recruiter") {
     res.status(401).json({
       message: "You don't have permissions to add jobs",
     });
     return;
   }
-
-  const data = req.body;
+  let data = req.body;
+  await Recruiter.find({ email: req.user.email }, (err, doc) => {
+    data.companyName = doc[0].companyName;
+  });
 
   let job = new Job({
     userId: user._id,
+    companyName: data.companyName,
     title: data.title,
     maxApplicants: data.maxApplicants,
     maxPositions: data.maxPositions,
@@ -49,12 +51,12 @@ router.post("/jobs", jwtAuth, (req, res) => {
 });
 
 // to get all the jobs [pagination] [for recruiter personal and for everyone]
-router.get("/jobs", jwtAuth, (req, res) => {
+router.get("/jobs", jwtAuth, async (req, res) => {
   // router.get("/jobs", (req, res) => {
   let user = req.user;
+
   let findParams = {};
   let sortParams = {};
-
   // const page = parseInt(req.query.page) ? parseInt(req.query.page) : 1;
   // const limit = parseInt(req.query.limit) ? parseInt(req.query.limit) : 10;
   // const skip = page - 1 >= 0 ? (page - 1) * limit : 0;
