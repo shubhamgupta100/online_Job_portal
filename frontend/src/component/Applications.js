@@ -22,6 +22,7 @@ import axios from "axios";
 import { SetPopupContext } from "../App";
 
 import apiList from "../lib/apiList";
+import Loading from "./Loading";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -233,6 +234,7 @@ const ApplicationTile = (props) => {
 const Applications = (props) => {
   const setPopup = useContext(SetPopupContext);
   const [applications, setApplications] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getData();
@@ -248,6 +250,7 @@ const Applications = (props) => {
       .then((response) => {
         // console.log(response.data);
         setApplications(response.data);
+        setLoading(false);
       })
       .catch((err) => {
         // console.log(err.response);
@@ -261,46 +264,52 @@ const Applications = (props) => {
   };
 
   return (
-    <Grid
-      container
-      item
-      direction="column"
-      alignItems="center"
-      style={{ padding: "30px", minHeight: "93vh" }}
-    >
-      <Grid item>
-        <h2
-          className="border_bottom"
-          style={{ fontWeight: "bolder", marginTop: "-30px" }}
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <Grid
+          container
+          item
+          direction="column"
+          alignItems="center"
+          style={{ padding: "30px", minHeight: "93vh" }}
         >
-          Applications
-        </h2>
-      </Grid>
-      <Grid
-        container
-        item
-        xs
-        direction="column"
-        style={{ width: "100%" }}
-        alignItems="stretch"
-        justify="center"
-      >
-        {applications.length > 0 ? (
-          applications.map((obj) => (
-            // <Grid item>
-            <div className="dashboard_container">
-              <ApplicationTile application={obj} />
-            </div>
-            // </Grid>
-          ))
-        ) : (
-          <Typography variant="h5" style={{ textAlign: "center" }}>
-            No Applications Found ! Kindly check on browse section apply
-            internship/fulltime role :)
-          </Typography>
-        )}
-      </Grid>
-    </Grid>
+          <Grid item>
+            <h2
+              className="border_bottom"
+              style={{ fontWeight: "bolder", marginTop: "-30px" }}
+            >
+              Applications
+            </h2>
+          </Grid>
+          <Grid
+            container
+            item
+            xs
+            direction="column"
+            style={{ width: "100%" }}
+            alignItems="stretch"
+            justify="center"
+          >
+            {applications.length > 0 ? (
+              applications.map((obj) => (
+                // <Grid item>
+                <div className="dashboard_container">
+                  <ApplicationTile application={obj} />
+                </div>
+                // </Grid>
+              ))
+            ) : (
+              <Typography variant="h5" style={{ textAlign: "center" }}>
+                No Applications Found ! Kindly check on browse section apply
+                internship/fulltime role :)
+              </Typography>
+            )}
+          </Grid>
+        </Grid>
+      )}
+    </>
   );
 };
 

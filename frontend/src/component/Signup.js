@@ -119,7 +119,6 @@ const Login = (props) => {
   const setPopup = useContext(SetPopupContext);
 
   const [loggedin, setLoggedin] = useState(isAuth());
-
   const [signupDetails, setSignupDetails] = useState({
     type: "applicant",
     email: "",

@@ -28,6 +28,7 @@ import { SetPopupContext } from "../App";
 
 import apiList from "../lib/apiList";
 import { userType } from "../lib/isAuth";
+import Loading from "./Loading";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -543,6 +544,7 @@ const FilterPopup = (props) => {
 const Home = (props) => {
   const [jobs, setJobs] = useState([]);
   const [filterOpen, setFilterOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [searchOptions, setSearchOptions] = useState({
     query: "",
     skill: "",
@@ -642,6 +644,7 @@ const Home = (props) => {
             return deadline > today;
           })
         );
+        setLoading(false);
       })
       .catch((err) => {
         // console.log(err.response.data);
@@ -655,91 +658,95 @@ const Home = (props) => {
 
   return (
     <>
-      <div className="main_conatiner">
-        <div className="home-container">
-          {jobs.length > 0 ? (
-            <div className="searchJob">
-              <TextField
-                label="Search Jobs with job title"
-                value={searchOptions.query}
-                onChange={(event) =>
-                  setSearchOptions({
-                    ...searchOptions,
-                    query: event.target.value,
-                  })
-                }
-                onKeyPress={(ev) => {
-                  if (ev.key === "Enter") {
-                    getData();
-                  }
-                }}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment>
-                      <IconButton onClick={() => getData()}>
-                        <SearchIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                style={{ width: "300px", marginLeft: "20px" }}
-                variant="outlined"
-              />
-
-              <TextField
-                label="Search Jobs with skills"
-                value={searchOptions.skill}
-                onChange={(event) =>
-                  setSearchOptions({
-                    ...searchOptions,
-                    skill: event.target.value,
-                  })
-                }
-                onKeyPress={(ev) => {
-                  if (ev.key === "Enter") {
-                    getData();
-                  }
-                }}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment>
-                      <IconButton onClick={() => getData()}>
-                        <SearchIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                style={{ width: "300px", marginLeft: "10px" }}
-                variant="outlined"
-              />
-            </div>
-          ) : (
-            ""
-          )}
-          <div className="job-container">
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="main_conatiner">
+          <div className="home-container">
             {jobs.length > 0 ? (
-              jobs.map((job) => {
-                return <JobTile job={job} />;
-              })
-            ) : (
-              <div className="sorry_line">
-                <h2>Sorry We don't have matching jobs :) </h2>
-              </div>
-            )}
-          </div>
-        </div>
+              <div className="searchJob">
+                <TextField
+                  label="Search Jobs with job title"
+                  value={searchOptions.query}
+                  onChange={(event) =>
+                    setSearchOptions({
+                      ...searchOptions,
+                      query: event.target.value,
+                    })
+                  }
+                  onKeyPress={(ev) => {
+                    if (ev.key === "Enter") {
+                      getData();
+                    }
+                  }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment>
+                        <IconButton onClick={() => getData()}>
+                          <SearchIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  style={{ width: "300px", marginLeft: "20px" }}
+                  variant="outlined"
+                />
 
-        <FilterPopup
-          open={filterOpen}
-          searchOptions={searchOptions}
-          setSearchOptions={setSearchOptions}
-          handleClose={() => setFilterOpen(false)}
-          getData={() => {
-            getData();
-            setFilterOpen(false);
-          }}
-        />
-      </div>
+                <TextField
+                  label="Search Jobs with skills"
+                  value={searchOptions.skill}
+                  onChange={(event) =>
+                    setSearchOptions({
+                      ...searchOptions,
+                      skill: event.target.value,
+                    })
+                  }
+                  onKeyPress={(ev) => {
+                    if (ev.key === "Enter") {
+                      getData();
+                    }
+                  }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment>
+                        <IconButton onClick={() => getData()}>
+                          <SearchIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  style={{ width: "300px", marginLeft: "10px" }}
+                  variant="outlined"
+                />
+              </div>
+            ) : (
+              ""
+            )}
+            <div className="job-container">
+              {jobs.length > 0 ? (
+                jobs.map((job) => {
+                  return <JobTile job={job} />;
+                })
+              ) : (
+                <div className="sorry_line">
+                  <h2>Sorry We don't have matching jobs :) </h2>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <FilterPopup
+            open={filterOpen}
+            searchOptions={searchOptions}
+            setSearchOptions={setSearchOptions}
+            handleClose={() => setFilterOpen(false)}
+            getData={() => {
+              getData();
+              setFilterOpen(false);
+            }}
+          />
+        </div>
+      )}
     </>
   );
 };

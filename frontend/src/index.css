@@ -373,3 +373,12 @@ body {
   position: relative;
   top: -100px !important;
 }
+
+/* user */
+.main_user_conatiner {
+  width: 100%;
+  /* position: relative;
+  left: 30%; */
+  display: flex;
+  justify-content: center;
+}

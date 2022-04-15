@@ -14,12 +14,17 @@ const router = express.Router();
 // To get all the applicants
 router.get("/users", jwtAuth, async (req, res) => {
   const user = req.user;
+  console.log("url", req.query.skill);
   if (user.type != "recruiter") {
     res.status(401).json({
       message: "You don't have permissions to access the applicants",
     });
   }
-  let users = await JobApplicant.find({ skills: req.query.skill });
+  let users = await JobApplicant.find();
+  if (req.query.skill && req.query.skill !== "undefined") {
+    users = await JobApplicant.find({ skills: req.query.skill });
+  }
+  // console.log("users", users);
   return res.status(200).json({
     message: "success",
     users,

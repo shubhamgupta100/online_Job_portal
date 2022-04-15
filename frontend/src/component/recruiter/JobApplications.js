@@ -27,6 +27,7 @@ import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { SetPopupContext } from "../../App";
 
 import apiList, { server } from "../../lib/apiList";
+import Loading from "../Loading";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -693,6 +694,7 @@ const ApplicationTile = (props) => {
 const JobApplications = (props) => {
   const setPopup = useContext(SetPopupContext);
   const [applications, setApplications] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { jobId } = useParams();
   const [filterOpen, setFilterOpen] = useState(false);
   const [searchOptions, setSearchOptions] = useState({
@@ -766,6 +768,7 @@ const JobApplications = (props) => {
       .then((response) => {
         // console.log(response.data);
         setApplications(response.data);
+        setLoading(false);
       })
       .catch((err) => {
         // console.log(err.response);
@@ -781,59 +784,65 @@ const JobApplications = (props) => {
 
   return (
     <>
-      <Grid
-        container
-        item
-        direction="column"
-        alignItems="center"
-        style={{ padding: "30px", minHeight: "93vh" }}
-      >
-        <Grid item>
-          <h2
-            className="border_bottom"
-            style={{ fontWeight: "bolder", marginTop: "-30px" }}
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <Grid
+            container
+            item
+            direction="column"
+            alignItems="center"
+            style={{ padding: "30px", minHeight: "93vh" }}
           >
-            Applications
-          </h2>
-        </Grid>
-        <Grid item>
-          <IconButton onClick={() => setFilterOpen(true)}>
-            <FilterListIcon />
-          </IconButton>
-        </Grid>
-        <Grid
-          container
-          item
-          xs
-          direction="column"
-          style={{ width: "100%" }}
-          alignItems="stretch"
-          justify="center"
-        >
-          {applications.length > 0 ? (
-            applications.map((obj) => (
-              <Grid item>
-                {/* {console.log(obj)} */}
-                <ApplicationTile application={obj} getData={getData} />
-              </Grid>
-            ))
-          ) : (
-            <Typography variant="h5" style={{ textAlign: "center" }}>
-              No Applications Found
-            </Typography>
-          )}
-        </Grid>
-      </Grid>
-      <FilterPopup
-        open={filterOpen}
-        searchOptions={searchOptions}
-        setSearchOptions={setSearchOptions}
-        handleClose={() => setFilterOpen(false)}
-        getData={() => {
-          getData();
-          setFilterOpen(false);
-        }}
-      />
+            <Grid item>
+              <h2
+                className="border_bottom"
+                style={{ fontWeight: "bolder", marginTop: "-30px" }}
+              >
+                Applications
+              </h2>
+            </Grid>
+            <Grid item>
+              <IconButton onClick={() => setFilterOpen(true)}>
+                <FilterListIcon />
+              </IconButton>
+            </Grid>
+            <Grid
+              container
+              item
+              xs
+              direction="column"
+              style={{ width: "100%" }}
+              alignItems="stretch"
+              justify="center"
+            >
+              {applications.length > 0 ? (
+                applications.map((obj) => (
+                  <Grid item>
+                    {/* {console.log(obj)} */}
+                    <ApplicationTile application={obj} getData={getData} />
+                  </Grid>
+                ))
+              ) : (
+                <Typography variant="h5" style={{ textAlign: "center" }}>
+                  No Applications Found
+                </Typography>
+              )}
+            </Grid>
+          </Grid>
+          <FilterPopup
+            open={filterOpen}
+            searchOptions={searchOptions}
+            setSearchOptions={setSearchOptions}
+            handleClose={() => setFilterOpen(false)}
+            getData={() => {
+              getData();
+              setFilterOpen(false);
+            }}
+          />
+        </>
+      )}
     </>
   );
 };

@@ -16,6 +16,7 @@ import JobApplications from "./component/recruiter/JobApplications";
 import AcceptedApplicants from "./component/recruiter/AcceptedApplicants";
 import RecruiterProfile from "./component/recruiter/Profile";
 import MessagePopup from "./lib/MessagePopup";
+import User from "./component/recruiter/User";
 import isAuth, { userType } from "./lib/isAuth";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +51,7 @@ function App() {
           <Grid item className={classes.body}>
             <Switch>
               <Route exact path="/">
-                <Welcome isAuth={isAuth} />
+                <Welcome isAuth={isAuth} userType={userType} />
               </Route>
               <Route exact path="/login">
                 <Login />
@@ -85,6 +86,9 @@ function App() {
               </Route>
               <Route exact path="/employees">
                 <AcceptedApplicants />
+              </Route>
+              <Route exact path="/users">
+                <User />
               </Route>
               <Route>
                 <ErrorPage />

@@ -5,9 +5,10 @@ import PageNotFound from "./PageNotFound";
 
 const Welcome = (props) => {
   let auth = props.isAuth();
+  let uType = props.userType();
   return (
     <>
-      <HomePage auth={auth} />
+      <HomePage auth={auth} userType={uType} />
       {/* <Footer /> */}
     </>
   );

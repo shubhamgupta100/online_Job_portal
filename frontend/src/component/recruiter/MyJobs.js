@@ -28,6 +28,7 @@ import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { SetPopupContext } from "../../App";
 
 import apiList from "../../lib/apiList";
+import Loading from "../Loading";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -725,6 +726,7 @@ const FilterPopup = (props) => {
 const MyJobs = (props) => {
   const [jobs, setJobs] = useState([]);
   const [filterOpen, setFilterOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [searchOptions, setSearchOptions] = useState({
     query: "",
     jobType: {
@@ -816,6 +818,7 @@ const MyJobs = (props) => {
       .then((response) => {
         // console.log(response.data);
         setJobs(response.data);
+        setLoading(false);
       })
       .catch((err) => {
         // console.log(err.response.data);
@@ -829,92 +832,99 @@ const MyJobs = (props) => {
 
   return (
     <>
-      <Grid
-        container
-        item
-        direction="column"
-        alignItems="center"
-        style={{ padding: "30px", minHeight: "93vh" }}
-      >
-        <Grid
-          item
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-        >
-          <Grid item xs>
-            <h1
-              className="border_bottom"
-              style={{ fontWeight: "bolder", marginTop: "-30px" }}
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          {" "}
+          <Grid
+            container
+            item
+            direction="column"
+            alignItems="center"
+            style={{ padding: "30px", minHeight: "93vh" }}
+          >
+            <Grid
+              item
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
             >
-              My Jobs
-            </h1>
-          </Grid>
-          <Grid item xs>
-            <TextField
-              label="Search Jobs"
-              value={searchOptions.query}
-              onChange={(event) =>
-                setSearchOptions({
-                  ...searchOptions,
-                  query: event.target.value,
-                })
-              }
-              onKeyPress={(ev) => {
-                if (ev.key === "Enter") {
-                  getData();
-                }
-              }}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment>
-                    <IconButton onClick={() => getData()}>
-                      <SearchIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              style={{ width: "500px" }}
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item>
-            <IconButton onClick={() => setFilterOpen(true)}>
-              <FilterListIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+              <Grid item xs>
+                <h1
+                  className="border_bottom"
+                  style={{ fontWeight: "bolder", marginTop: "-30px" }}
+                >
+                  My Jobs
+                </h1>
+              </Grid>
+              <Grid item xs>
+                <TextField
+                  label="Search Jobs"
+                  value={searchOptions.query}
+                  onChange={(event) =>
+                    setSearchOptions({
+                      ...searchOptions,
+                      query: event.target.value,
+                    })
+                  }
+                  onKeyPress={(ev) => {
+                    if (ev.key === "Enter") {
+                      getData();
+                    }
+                  }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment>
+                        <IconButton onClick={() => getData()}>
+                          <SearchIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  style={{ width: "500px" }}
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item>
+                <IconButton onClick={() => setFilterOpen(true)}>
+                  <FilterListIcon />
+                </IconButton>
+              </Grid>
+            </Grid>
 
-        <Grid
-          container
-          item
-          xs
-          direction="column"
-          alignItems="stretch"
-          justify="center"
-        >
-          {jobs.length > 0 ? (
-            jobs.map((job) => {
-              return <JobTile job={job} getData={getData} />;
-            })
-          ) : (
-            <Typography variant="h5" style={{ textAlign: "center" }}>
-              No jobs found
-            </Typography>
-          )}
-        </Grid>
-      </Grid>
-      <FilterPopup
-        open={filterOpen}
-        searchOptions={searchOptions}
-        setSearchOptions={setSearchOptions}
-        handleClose={() => setFilterOpen(false)}
-        getData={() => {
-          getData();
-          setFilterOpen(false);
-        }}
-      />
+            <Grid
+              container
+              item
+              xs
+              direction="column"
+              alignItems="stretch"
+              justify="center"
+            >
+              {jobs.length > 0 ? (
+                jobs.map((job) => {
+                  return <JobTile job={job} getData={getData} />;
+                })
+              ) : (
+                <Typography variant="h5" style={{ textAlign: "center" }}>
+                  No jobs found
+                </Typography>
+              )}
+            </Grid>
+          </Grid>
+          <FilterPopup
+            open={filterOpen}
+            searchOptions={searchOptions}
+            setSearchOptions={setSearchOptions}
+            handleClose={() => setFilterOpen(false)}
+            getData={() => {
+              getData();
+              setFilterOpen(false);
+            }}
+          />
+        </>
+      )}
     </>
   );
 };

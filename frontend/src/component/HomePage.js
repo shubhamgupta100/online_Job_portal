@@ -2,7 +2,7 @@ import React from "react";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { Link } from "react-router-dom";
 import MakeCard from "./MakeCard";
-export default function HomePage({ auth }) {
+export default function HomePage({ auth, userType }) {
   const cardData = [
     {
       id: 1,
@@ -68,7 +68,7 @@ export default function HomePage({ auth }) {
   return (
     <div className="home_page_container">
       <div className="hero_container">
-        <div style={{ marginTop: "50px" }}>
+        <div style={{ marginTop: "60px" }}>
           <h3>
             Welcome to Online Job Portal here You can find internships/full time
             job in early aged startups
@@ -86,14 +86,25 @@ export default function HomePage({ auth }) {
           </p>
 
           {auth !== null ? (
-            <Link to="/browse">
-              <button>
-                Browse Internship/Jobs
-                <span className="forward_arrow">
-                  <ArrowForwardIcon style={{ color: "white" }} />
-                </span>
-              </button>
-            </Link>
+            userType === "recruiter" ? (
+              <Link to="/users">
+                <button>
+                  Check Here all the users
+                  <span className="forward_arrow">
+                    <ArrowForwardIcon style={{ color: "white" }} />
+                  </span>
+                </button>
+              </Link>
+            ) : (
+              <Link to="/browse">
+                <button>
+                  Browse Internship/Jobs
+                  <span className="forward_arrow">
+                    <ArrowForwardIcon style={{ color: "white" }} />
+                  </span>
+                </button>
+              </Link>
+            )
           ) : (
             <Link to="/login">
               <button>
