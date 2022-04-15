@@ -11,6 +11,37 @@ const Rating = require("../db/Rating");
 
 const router = express.Router();
 
+// To get all the applicants
+router.get("/users", jwtAuth, async (req, res) => {
+  const user = req.user;
+  if (user.type != "recruiter") {
+    res.status(401).json({
+      message: "You don't have permissions to access the applicants",
+    });
+  }
+  let users = await JobApplicant.find({ skills: req.query.skill });
+  return res.status(200).json({
+    message: "success",
+    users,
+  });
+});
+
+// to get info about a particular job
+router.get("/jobs/:id", jwtAuth, (req, res) => {
+  Job.findOne({ _id: req.params.id })
+    .then((job) => {
+      if (job == null) {
+        res.status(400).json({
+          message: "Job does not exist",
+        });
+        return;
+      }
+      res.json(job);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
 // To add new job
 router.post("/jobs", jwtAuth, async (req, res) => {
   const user = req.user;
