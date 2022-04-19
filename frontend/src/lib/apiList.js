@@ -11,6 +11,8 @@ export const server = "http://localhost:4444";
 //   user: `${server}/api/user`,
 //   applicants: `${server}/api/applicants`,
 //   users: `${server}/api/users`,
+//   sendMail: `${server}/api/sendMail`,
+//   recruiterinfo: `${server}/api/recruiterinfo`,
 // };
 const apiList = {
   login: `/auth/login`,
@@ -23,6 +25,8 @@ const apiList = {
   user: `/api/user`,
   applicants: `/api/applicants`,
   users: `/api/users`,
+  sendMail: `/api/sendMail/`,
+  recruiterinfo: `/api/recruiterinfo/:id`,
 };
 
 export default apiList;

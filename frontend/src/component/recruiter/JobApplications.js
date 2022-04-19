@@ -27,6 +27,7 @@ import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { SetPopupContext } from "../../App";
 
 import apiList, { server } from "../../lib/apiList";
+
 import Loading from "../Loading";
 
 const useStyles = makeStyles((theme) => ({
@@ -341,9 +342,16 @@ const FilterPopup = (props) => {
 const ApplicationTile = (props) => {
   const classes = useStyles();
   const { application, getData } = props;
+  // console.log(application);
   const setPopup = useContext(SetPopupContext);
   const [open, setOpen] = useState(false);
-  // console.log("props", props);
+  const [companyName, setCompanyName] = useState("");
+  const recAddress = `${apiList.recruiterinfo}/${application.recruiterId}`;
+  axios
+    .get(recAddress)
+    .then((res) => setCompanyName(res.data.companyName))
+    .catch((err) => console.log(err));
+  // console.log("props", companyName);
   const appliedOn = new Date(application.dateOfApplication);
 
   const handleClose = () => {
@@ -397,10 +405,35 @@ const ApplicationTile = (props) => {
 
   const updateStatus = (status) => {
     const address = `${apiList.applications}/${application._id}`;
+    // console.log("status", status);
+    if (status === "shortlisted") {
+      const data = {
+        companyName,
+        username: application.jobApplicant.name,
+        email: application.jobApplicant.email,
+      };
+      axios
+        .post(apiList.sendMail, data, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((err) => {
+          setPopup({
+            open: true,
+            severity: "error",
+            message: err.message,
+          });
+        });
+    }
     const statusData = {
       status: status,
       dateOfJoining: new Date().toISOString(),
     };
+
     axios
       .put(address, statusData, {
         headers: {
@@ -774,6 +807,7 @@ const JobApplications = (props) => {
         // console.log(err.response);
         // console.log(err.response.data);
         setApplications([]);
+        setLoading(false);
         setPopup({
           open: true,
           severity: "error",

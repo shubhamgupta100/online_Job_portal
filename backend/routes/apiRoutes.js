@@ -8,10 +8,17 @@ const Recruiter = require("../db/Recruiter");
 const Job = require("../db/Job");
 const Application = require("../db/Application");
 const Rating = require("../db/Rating");
-
+const sendMail = require("../lib/sendMail");
 const router = express.Router();
 
 // To get all the applicants
+router.get("/recruiterinfo/:id", async (req, res) => {
+  // console.log(req.params.id);
+  let recruiter = await Recruiter.findOne({ userId: req.params.id });
+  // console.log(recruiter);
+  return res.json(recruiter);
+});
+router.post("/sendMail", jwtAuth, sendMail);
 router.get("/users", jwtAuth, async (req, res) => {
   const user = req.user;
   console.log("url", req.query.skill);

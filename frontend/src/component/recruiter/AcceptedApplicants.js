@@ -804,6 +804,7 @@ const AcceptedApplicants = (props) => {
         // console.log(err.response);
         // console.log(err.response.data);
         setApplications([]);
+        setLoading(false);
         setPopup({
           open: true,
           severity: "error",
