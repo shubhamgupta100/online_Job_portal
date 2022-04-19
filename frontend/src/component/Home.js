@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 const JobTile = (props) => {
   const classes = useStyles();
   const { job } = props;
-  console.log("Jobs", job);
+  // console.log("Jobs", job);
   const setPopup = useContext(SetPopupContext);
 
   const [open, setOpen] = useState(false);
